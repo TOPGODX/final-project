@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
               prefixIcon: Icon(Icons.person)),
-          onSaved: (String? username) {
+          onSaved: (String username) {
             _username = username ?? "";
           },
         ),

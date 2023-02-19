@@ -74,7 +74,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
         child: Center(
           child: StreamBuilder<QuerySnapshot>(
               stream:
-                  FirebaseFirestore.instance.collection("subject").snapshots(),
+                  FirebaseFirestore.instance.collection("Producr").snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   print('xcxzcz');
@@ -158,9 +158,14 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                                   width: 18,
                                                 ),
                                                 Text(
-                                                  "     เวลาเปิด 08.00 - 17.00",
+                                                  "    เวลาเปิด " +
+                                                      snapshot.data.docs[index]
+                                                          ['time'] +
+                                                      " น",
                                                   style: TextStyle(
                                                     fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
                                                 ),
                                               ],
@@ -184,7 +189,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                                   onRatingUpdate: (index) {},
                                                 ),
                                                 Text(
-                                                  " ( 5.0 )",
+                                                  " ( 4.0 ) ",
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       fontWeight:

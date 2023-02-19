@@ -110,7 +110,7 @@ class _addscreen extends State<addscreen> {
     map['time'] = time;
 
     final top = FirebaseFirestore.instance
-        .collection("subject")
+        .collection("Producr")
         .doc()
         .set(map)
         .then((value) {
@@ -177,7 +177,6 @@ class _addscreen extends State<addscreen> {
         Container(height: 20), //space between text field
 
         TextFormField(
-            maxLines: 3,
             onChanged: (value) => detail = value.trim(),
             decoration: InputDecoration(
               labelText: "รายละเอียด", //babel text

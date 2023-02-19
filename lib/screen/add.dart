@@ -15,14 +15,13 @@ class addscreen extends StatefulWidget {
 }
 
 class _addscreen extends State<addscreen> {
-  @override
-  File file;
-  String nameshop, address, detail, urlpic;
+  File? file;
+  String nameshop = "", address = "", detail = "", urlpic = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+        drawer: NavBar(),
         appBar: AppBar(
           title: Text(
             "เพิ่มร้านค้า",
@@ -58,18 +57,21 @@ class _addscreen extends State<addscreen> {
             IconButton(
                 icon: Icon(Icons.add_a_photo),
                 onPressed: () => chooseImage(ImageSource.camera)),
-            Container(
-                width: 200,
-                height: 200,
-                child: file == null
-                    ? Image.network(
-                        "https://cdn.discordapp.com/attachments/846300874976133161/1076429263412142100/396915-200.png",
-                        height: 300,
-                        width: 300,
-                      )
-                    : Image.file(
-                        file,
-                      )),
+            Builder(builder: (context) {
+              final file = this.file;
+              return Container(
+                  width: 200,
+                  height: 200,
+                  child: file == null
+                      ? Image.network(
+                          "https://cdn.discordapp.com/attachments/846300874976133161/1076429263412142100/396915-200.png",
+                          height: 300,
+                          width: 300,
+                        )
+                      : Image.file(
+                          file,
+                        ));
+            }),
             IconButton(
                 icon: Icon(Icons.add_photo_alternate),
                 onPressed: () => chooseImage(ImageSource.gallery)),
@@ -86,6 +88,8 @@ class _addscreen extends State<addscreen> {
   }
 
   Future<void> uplodPictuer() async {
+    final file = this.file;
+    if (file == null) return;
     Random random = Random();
     int i = random.nextInt(10000);
     FirebaseStorage storage = FirebaseStorage.instance;
@@ -94,31 +98,27 @@ class _addscreen extends State<addscreen> {
     UploadTask uploadTask = ref.putFile(file);
     urlpic = await (await uploadTask).ref.getDownloadURL();
     print('url = $urlpic');
-  insertValue();
-    
+    insertValue();
   }
 
-
   Future<void> insertValue() async {
-
-
     Map<String, dynamic> map = Map();
     map['name'] = nameshop;
     map['address'] = address;
     map['detail'] = detail;
-     map['url'] = urlpic;
+    map['url'] = urlpic;
 
-    final top = FirebaseFirestore.instance.collection("subject")
-   .doc()
-    .set(map)
-    .then((value) {
+    final top = FirebaseFirestore.instance
+        .collection("subject")
+        .doc()
+        .set(map)
+        .then((value) {
       print('object');
       MaterialPageRoute route = MaterialPageRoute(
         builder: (value) => WelcomeScreen(),
       );
       Navigator.of(context).pushAndRemoveUntil(route, (value) => false);
     });
-
   }
 
   Future<Null> chooseImage(ImageSource source) async {
@@ -126,7 +126,7 @@ class _addscreen extends State<addscreen> {
       var object = await ImagePicker()
           .getImage(source: source, maxHeight: 800.0, maxWidth: 800.0);
       setState(() {
-        file = File(object.path);
+        file = File(object?.path ?? "");
       });
     } catch (e) {}
   }
@@ -221,7 +221,7 @@ class _addscreen extends State<addscreen> {
                   ..showSnackBar(snackBar);
               } else {
                 uplodPictuer();
-              // insertValue();
+                // insertValue();
               }
             },
             icon: Icon(Icons.save),

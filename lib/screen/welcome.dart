@@ -16,32 +16,31 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreen extends State<WelcomeScreen> {
+  final Stream<QuerySnapshot> _subjectStream =
+      FirebaseFirestore.instance.collection('subject').snapshots();
   final auth = FirebaseAuth.instance;
-  @override
-  void initStare() {
-    super.initState();
-    readAllData();
-  }
-  
+  // @override
+  // void initStare() {
+  //   super.initState();
+  //   // readAllData();
+  // }
+
+/*
   Future<Void> readAllData() {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     CollectionReference collectionReference =
-    FirebaseFirestore.instance.collection("subject");
-    collectionReference.snapshots().listen((response){
-      
-    List<DocumentSnapshot> snapshots = response.docs;
-    
-    for (var snapshot in snapshots) {
-      print('snapshot = $snapshot');
-      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
-     
-  
-    }
-    
+        FirebaseFirestore.instance.collection("subject");
+    collectionReference.snapshots().listen((response) {
+      List<DocumentSnapshot> snapshots = response.docs;
 
+      for (var snapshot in snapshots) {
+        print('snapshot = $snapshot');
+        Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      }
     });
+    return;
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +55,25 @@ class _WelcomeScreen extends State<WelcomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(
-          child: Column(
-            children: [],
-          ),
+          child: StreamBuilder<QuerySnapshot>(
+              stream: _subjectStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Something went wrong');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text("Loading");
+                }
+                return Column(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                  print(data['name']);
+                  return Text(data['name']);
+                }).toList());
+              }),
         ),
       ),
     );

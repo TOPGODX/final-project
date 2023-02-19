@@ -6,7 +6,6 @@ import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/add.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class NavBar extends StatelessWidget {
   @override
   final auth = FirebaseAuth.instance;
@@ -29,14 +28,13 @@ class NavBar extends StatelessWidget {
                   "https://cdn.discordapp.com/attachments/780359466792386582/1074924286130794576/694px-Unknown_person.png",
                   fit: BoxFit.cover),
             ),
-            title: Text(
-              auth.currentUser.email,
-              textAlign: TextAlign.start,  
-            textDirection: TextDirection.ltr,
-            style: GoogleFonts.oswald( fontWeight: FontWeight.bold,
-                  fontSize: 18,)
-             
-            ),
+            title: Text(auth.currentUser?.email ?? "",
+                textAlign: TextAlign.start,
+                textDirection: TextDirection.ltr,
+                style: GoogleFonts.oswald(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                )),
             onTap: () => null,
           ),
           Divider(),
@@ -50,7 +48,7 @@ class NavBar extends StatelessWidget {
             subtitle: Text(
               'แสดงรายการ',
               style: TextStyle(
-                color: Colors.grey ,
+                color: Colors.grey,
               ),
             ),
             onTap: () {

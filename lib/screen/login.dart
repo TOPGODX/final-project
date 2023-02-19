@@ -7,7 +7,6 @@ import 'package:loginsystem/model/profile.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/register.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -15,7 +14,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
-  Profile profile = Profile();
+  String _email = "";
+  String _password = "";
+  //
+
+  //Profile profile = Profile();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
 
   @override
@@ -67,12 +70,14 @@ class _LoginScreenState extends State<LoginScreen> {
   _header(context) {
     return Column(
       children: [
-         SizedBox(
+        SizedBox(
           height: 30,
         ),
-          Image.network("https://cdn.discordapp.com/attachments/826134815375229008/1074920369347113030/fresh-vegetables-logo-A10D7349C9-seeklogo.png",
-    height: 300,
-    width: 300,),
+        Image.network(
+          "https://cdn.discordapp.com/attachments/826134815375229008/1074920369347113030/fresh-vegetables-logo-A10D7349C9-seeklogo.png",
+          height: 300,
+          width: 300,
+        ),
         //Image.asset("assets/images/logo.png"),
         SizedBox(
           height: 30,
@@ -85,7 +90,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
         TextFormField(
           decoration: InputDecoration(
               hintText: "Username",
@@ -100,8 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
             EmailValidator(errorText: "รูปแบบอีเมลไม่ถูกต้อง")
           ]),
           keyboardType: TextInputType.emailAddress,
-          onSaved: (String email) {
-            profile.email = email;
+          onSaved: (email) {
+            _email = email ?? "";
           },
         ),
         SizedBox(
@@ -110,8 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
         TextFormField(
           validator: RequiredValidator(errorText: "กรุณาป้อนรหัสผ่านด้วยครับ"),
           obscureText: true,
-          onSaved: (String password) {
-            profile.password = password;
+          onSaved: (password) {
+            _password = password ?? "";
           },
           decoration: InputDecoration(
             hintText: "Password",
@@ -126,14 +130,14 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
-            if (formKey.currentState.validate()) {
-              formKey.currentState.save();
+            if (formKey.currentState?.validate() ?? false) {
+              formKey.currentState?.save();
               try {
                 await FirebaseAuth.instance
                     .signInWithEmailAndPassword(
-                        email: profile.email, password: profile.password)
+                        email: _email, password: _password)
                     .then((value) {
-                  formKey.currentState.reset();
+                  formKey.currentState?.reset();
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
                     return WelcomeScreen();
@@ -141,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 });
               } on FirebaseAuthException catch (e) {
                 Fluttertoast.showToast(
-                    msg: e.message, gravity: ToastGravity.CENTER);
+                    msg: e.message ?? "", gravity: ToastGravity.CENTER);
               }
             }
           },
@@ -167,13 +171,14 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Dont have an account? "),
-        TextButton(onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context){
-                          return RegisterScreen();
-                      })
-                    );
-                  }, child: Text("Sign Up"))
+        TextButton(
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return RegisterScreen();
+              }));
+            },
+            child: Text("Sign Up"))
       ],
     );
   }

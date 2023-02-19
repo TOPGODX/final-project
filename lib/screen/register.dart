@@ -6,8 +6,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:loginsystem/model/profile.dart';
 import 'package:loginsystem/screen/login.dart';
 
-
-
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -15,7 +13,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
-  Profile profile = Profile();
+
+  //Profile profile = Profile();
+  String _username = "";
+  String _email = "";
+  String _password = "";
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
 
   @override
@@ -41,13 +43,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Form(
                     key: formKey,
                     child: SingleChildScrollView(
-
-                       child: Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           _header(context),
                           _inputField(context),
-                         // _forgotPassword(context),
+                          // _forgotPassword(context),
                           _Login(context),
                         ],
                       ),
@@ -64,31 +65,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
           );
         });
   }
-_header(context) {
+
+  _header(context) {
     return Column(
       children: [
-      SizedBox(
+        SizedBox(
           height: 35,
         ),
-         Text(
+        Text(
           "Sign Up",
           style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
-         SizedBox(
+        SizedBox(
           height: 35,
         ),
       ],
     );
   }
-  
 
   _inputField(context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-       
         Text("Username", style: TextStyle(fontSize: 15)),
-          SizedBox(
+        SizedBox(
           height: 10,
         ),
         TextFormField(
@@ -100,15 +100,15 @@ _header(context) {
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
               prefixIcon: Icon(Icons.person)),
-              onSaved: (String? username) {
-             profile.username = username??"";
+          onSaved: (String? username) {
+            _username = username ?? "";
           },
         ),
-         SizedBox(
+        SizedBox(
           height: 20,
         ),
         Text("Email", style: TextStyle(fontSize: 15)),
-         SizedBox(
+        SizedBox(
           height: 10,
         ),
         TextFormField(
@@ -125,15 +125,15 @@ _header(context) {
             EmailValidator(errorText: "รูปแบบอีเมลไม่ถูกต้อง")
           ]),
           keyboardType: TextInputType.emailAddress,
-          onSaved: (String email) {
-            profile.email = email;
+          onSaved: (email) {
+            _email = email ?? "";
           },
         ),
         SizedBox(
           height: 20,
         ),
         Text("Password", style: TextStyle(fontSize: 15)),
-         SizedBox(
+        SizedBox(
           height: 10,
         ),
         TextFormField(
@@ -148,8 +148,8 @@ _header(context) {
           ),
           validator: RequiredValidator(errorText: "กรุณาป้อนรหัสผ่านด้วยครับ"),
           obscureText: true,
-          onSaved: (String password) {
-            profile.password = password;
+          onSaved: (password) {
+            _password = password ?? "";
           },
         ),
         SizedBox(
@@ -165,14 +165,14 @@ _header(context) {
             padding: EdgeInsets.symmetric(vertical: 16),
           ),
           onPressed: () async {
-            if (formKey.currentState.validate()) {
-              formKey.currentState.save();
+            if (formKey.currentState?.validate() ?? false) {
+              formKey.currentState?.save();
               try {
                 await FirebaseAuth.instance
                     .createUserWithEmailAndPassword(
-                        email: profile.email, password: profile.password)
+                        email: _email, password: _password)
                     .then((value) {
-                  formKey.currentState.reset();
+                  formKey.currentState?.reset();
                   Fluttertoast.showToast(
                       msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว",
                       gravity: ToastGravity.TOP);
@@ -189,7 +189,7 @@ _header(context) {
                 } else if (e.code == 'weak-password') {
                   message = "รหัสผ่านต้องมีความยาว 6 ตัวอักษรขึ้นไป";
                 } else {
-                  message = e.message;
+                  message = e.message ?? "";
                 }
                 Fluttertoast.showToast(
                     msg: message, gravity: ToastGravity.CENTER);
@@ -206,13 +206,14 @@ _header(context) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Already have an account? "),
-        TextButton(onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context){
-                          return LoginScreen();
-                      })
-                    );
-                  }, child: Text("Login"))
+        TextButton(
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return LoginScreen();
+              }));
+            },
+            child: Text("Login"))
       ],
     );
   }

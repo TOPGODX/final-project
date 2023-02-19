@@ -1,0 +1,3 @@
+com/mr/flutter/plugin/filepicker/FileInfo.java
+ com.mr.flutter.plugin.filepicker.FileInfo
+ com.mr.flutter.plugin.filepicker.FileInfo$Builder

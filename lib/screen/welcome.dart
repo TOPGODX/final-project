@@ -34,7 +34,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
     for (var snapshot in snapshots) {
       print('snapshot = $snapshot');
       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
-     print(data['name']);
+     
   
     }
     

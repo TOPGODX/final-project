@@ -16,7 +16,7 @@ class addscreen extends StatefulWidget {
 
 class _addscreen extends State<addscreen> {
   File file;
-  String nameshop = "", address = "", detail = "", urlpic = "";
+  String nameshop = "", address = "", detail = "", urlpic = "", time = "";
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +107,7 @@ class _addscreen extends State<addscreen> {
     map['address'] = address;
     map['detail'] = detail;
     map['url'] = urlpic;
+    map['time'] = time;
 
     final top = FirebaseFirestore.instance
         .collection("subject")
@@ -160,6 +161,18 @@ class _addscreen extends State<addscreen> {
               labelStyle: TextStyle(fontSize: 13, color: Colors.redAccent),
               border: OutlineInputBorder(), //label style
             )),
+        Container(height: 20), //space between text field
+        TextFormField(
+            onChanged: (value) => time = value.trim(),
+            decoration: InputDecoration(
+              labelText: "เวลาเปิดปิด", //babel text
+
+              prefixIcon: Icon(Icons.lock_clock,
+                  color: Colors.green.shade400), //prefix iocn
+
+              labelStyle: TextStyle(fontSize: 13, color: Colors.redAccent),
+              border: OutlineInputBorder(), //label style
+            )),
 
         Container(height: 20), //space between text field
 
@@ -202,7 +215,9 @@ class _addscreen extends State<addscreen> {
                   address == null ||
                   address.isEmpty ||
                   detail == null ||
-                  detail.isEmpty) {
+                  detail.isEmpty ||
+                  time == null ||
+                  time.isEmpty) {
                 final snackBar = SnackBar(
                   /// need to set following properties for best effect of awesome_snackbar_content
                   elevation: 0,

@@ -15,7 +15,7 @@ class addscreen extends StatefulWidget {
 }
 
 class _addscreen extends State<addscreen> {
-  File? file;
+  File file;
   String nameshop = "", address = "", detail = "", urlpic = "";
 
   @override

@@ -63,7 +63,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text("Loading");
+                  return Text("Loading ");
                 }
                 return Column(
                     children:

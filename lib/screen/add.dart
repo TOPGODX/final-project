@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,8 +7,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:loginsystem/screen/my_Style.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/NavBar.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class addscreen extends StatefulWidget {
   @override
@@ -16,7 +20,43 @@ class addscreen extends StatefulWidget {
 
 class _addscreen extends State<addscreen> {
   File file;
-  String nameshop = "", address = "", detail = "", urlpic = "", time = "";
+
+  double lat, lng;
+
+  @override
+  void initState() {
+    super.initState();
+
+    findlaglng();
+  }
+
+  Future<Null> findlaglng() async {
+    print('xxxxx');
+    LocationData locationData = await locationDatax();
+    setState(() {
+      lat = locationData.latitude;
+      lng = locationData.longitude;
+    });
+
+    print('lat =$lat,lng = $lng');
+  }
+
+  Future<LocationData> locationDatax() async {
+    Location location = Location();
+    try {
+      print('xxxxx');
+      return location.getLocation();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String nameshop = "",
+      address = "",
+      detail = "",
+      urlpic = "",
+      time = "",
+      phone = "";
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +148,8 @@ class _addscreen extends State<addscreen> {
     map['detail'] = detail;
     map['url'] = urlpic;
     map['time'] = time;
+    map['lat'] = lat;
+    map['lng'] = lng;
 
     final top = FirebaseFirestore.instance
         .collection("Producr")
@@ -130,6 +172,32 @@ class _addscreen extends State<addscreen> {
         file = File(object?.path ?? "");
       });
     } catch (e) {}
+  }
+
+  Set<Marker> myMarker() {
+    return <Marker>[
+      Marker(
+          markerId: MarkerId(nameshop),
+          position: LatLng(lat, lng),
+          infoWindow: InfoWindow(
+            title: nameshop,
+            snippet: 'ละติจูด =$lat,ลองติจูด =$lng',
+          ))
+    ].toSet();
+  }
+
+  Container showMap() {
+    LatLng latLng = LatLng(lat, lng);
+    CameraPosition cameraPosition = CameraPosition(target: latLng, zoom: 16.0);
+    return Container(
+      height: 200,
+      child: GoogleMap(
+        initialCameraPosition: cameraPosition,
+        mapType: MapType.normal,
+        onMapCreated: (controller) {},
+        markers: myMarker(),
+      ),
+    );
   }
 
   _maker(context) {
@@ -163,6 +231,18 @@ class _addscreen extends State<addscreen> {
             )),
         Container(height: 20), //space between text field
         TextFormField(
+            onChanged: (value) => phone = value.trim(),
+            decoration: InputDecoration(
+              labelText: "เบอร์โทร", //babel text
+
+              prefixIcon:
+                  Icon(Icons.phone, color: Colors.green.shade400), //prefix iocn
+
+              labelStyle: TextStyle(fontSize: 13, color: Colors.redAccent),
+              border: OutlineInputBorder(), //label style
+            )),
+        Container(height: 20), //space between text field
+        TextFormField(
             onChanged: (value) => time = value.trim(),
             decoration: InputDecoration(
               labelText: "เวลาเปิดปิด", //babel text
@@ -187,6 +267,9 @@ class _addscreen extends State<addscreen> {
               labelStyle: TextStyle(fontSize: 13, color: Colors.redAccent),
               border: OutlineInputBorder(), //label style
             )),
+        Container(height: 20),
+        lat == null ? MyStyle().showProgress() : showMap(),
+
         Container(height: 20),
         Container(
           width: MediaQuery.of(context).size.width,
@@ -216,7 +299,9 @@ class _addscreen extends State<addscreen> {
                   detail == null ||
                   detail.isEmpty ||
                   time == null ||
-                  time.isEmpty) {
+                  time.isEmpty ||
+                  phone == null ||
+                  phone.isEmpty) {
                 final snackBar = SnackBar(
                   /// need to set following properties for best effect of awesome_snackbar_content
                   elevation: 0,

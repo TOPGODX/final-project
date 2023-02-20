@@ -3,6 +3,13 @@
    <application
         android:label="loginsystem"
         android:icon="@mipmap/ic_launcher">
+
+      
+       <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDydgS3a9jJcWFglOr3YQAy1YebRWa-L6M"/>
+
+
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

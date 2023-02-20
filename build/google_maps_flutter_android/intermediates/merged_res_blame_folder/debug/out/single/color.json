@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\work\\MARKET\\build\\google_maps_flutter_android\\intermediates\\res\\merged\\debug\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-2\\files-2.1\\4782c04e17040a3f915279ef68299cb9\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "E:\\work\\MARKET\\build\\google_maps_flutter_android\\intermediates\\res\\merged\\debug\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-2\\files-2.1\\4782c04e17040a3f915279ef68299cb9\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "E:\\work\\MARKET\\build\\google_maps_flutter_android\\intermediates\\res\\merged\\debug\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-2\\files-2.1\\4782c04e17040a3f915279ef68299cb9\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_dark.xml"
+    }
+]

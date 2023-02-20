@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:loginsystem/model/data.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -146,9 +147,10 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                             Text(
                                               snapshot.data.docs[index]
                                                   ['detail'],
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                              ),
+                                              style: GoogleFonts.kanit(
+                                                  fontSize: 12,
+                                                  fontWeight:
+                                                      FontWeight.normal),
                                             ),
                                             Row(
                                               children: [
@@ -158,12 +160,12 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                                   width: 18,
                                                 ),
                                                 Text(
-                                                  "    เวลาเปิด " +
+                                                  "  เวลาเปิด " +
                                                       snapshot.data.docs[index]
                                                           ['time'] +
                                                       " น",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
+                                                  style: GoogleFonts.pridi(
+                                                    fontSize: 11,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
@@ -184,7 +186,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                                   itemBuilder: (context, _) =>
                                                       Icon(
                                                     Icons.star,
-                                                    color: Colors.yellowAccent,
+                                                    color: Colors.orange,
                                                   ),
                                                   onRatingUpdate: (index) {},
                                                 ),

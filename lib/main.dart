@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart'
     show
         Brightness,
@@ -23,10 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.lightGreen,
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-        ),
+            primarySwatch: Colors.lightGreen, brightness: Brightness.light),
         home: LoginScreen());
   }
 }

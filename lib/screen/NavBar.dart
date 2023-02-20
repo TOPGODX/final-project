@@ -11,6 +11,7 @@ class NavBar extends StatelessWidget {
   final auth = FirebaseAuth.instance;
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Color.fromARGB(239, 243, 243, 243),
       child: ListView(
         // Remove padding
         padding: EdgeInsets.zero,
@@ -31,7 +32,7 @@ class NavBar extends StatelessWidget {
             title: Text(auth.currentUser?.email ?? "",
                 textAlign: TextAlign.start,
                 textDirection: TextDirection.ltr,
-                style: GoogleFonts.oswald(
+                style: GoogleFonts.itim(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 )),
@@ -39,17 +40,19 @@ class NavBar extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.store, color: Colors.red.shade400),
+            leading: Icon(Icons.store, color: Colors.red),
             title: Text(
               'Show List',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              style: GoogleFonts.itim(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
               'แสดงรายการ',
-              style: TextStyle(
-                color: Colors.grey,
-              ),
+              style: GoogleFonts.mitr(
+                  color: Color.fromARGB(238, 90, 89, 89),
+                  fontWeight: FontWeight.normal),
             ),
             onTap: () {
               Navigator.pushReplacement(context,
@@ -59,16 +62,19 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.add_circle, color: Colors.green.shade400),
+            leading: Icon(Icons.add_circle, color: Colors.green),
             title: Text(
               'Add Shop',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              style: GoogleFonts.itim(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
               'เพิ่มรายการ',
-              style: TextStyle(
-                color: Colors.grey,
+              style: GoogleFonts.mitr(
+                color: Color.fromARGB(238, 90, 89, 89),
+                fontWeight: FontWeight.normal,
               ),
             ),
             onTap: () {
@@ -79,24 +85,32 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.info, color: Colors.blue.shade400),
+            leading: Icon(Icons.info, color: Colors.blue),
             title: Text(
               'information',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              style: GoogleFonts.itim(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
               'เพิ่มเพิ่มตำหน่ง',
-              style: TextStyle(
-                color: Colors.grey,
+              style: GoogleFonts.mitr(
+                color: Color.fromARGB(238, 90, 89, 89),
+                fontWeight: FontWeight.normal,
               ),
             ),
             onTap: () => null,
           ),
           Divider(),
           ListTile(
-            title: Text('Exit'),
-            leading: Icon(Icons.exit_to_app, color: Colors.yellow.shade400),
+            title: Text('Exit',
+                style: GoogleFonts.itim(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
+            leading: Icon(Icons.exit_to_app,
+                color: Color.fromARGB(255, 255, 163, 59)),
             onTap: () {
               auth.signOut().then((value) {
                 Navigator.pushReplacement(context,
@@ -107,8 +121,9 @@ class NavBar extends StatelessWidget {
             },
             subtitle: Text(
               'ออกจากระบบ',
-              style: TextStyle(
-                color: Colors.grey,
+              style: GoogleFonts.mitr(
+                color: Color.fromARGB(238, 90, 89, 89),
+                fontWeight: FontWeight.normal,
               ),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:loginsystem/screen/login.dart';
 import 'package:loginsystem/screen/welcome.dart';
+import 'package:loginsystem/screen/edit.dart';
 import 'package:loginsystem/screen/add.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -94,13 +95,18 @@ class NavBar extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
-              'เพิ่มเพิ่มตำหน่ง',
+              'แก้ไขข้อมูล',
               style: GoogleFonts.mitr(
                 color: Color.fromARGB(238, 90, 89, 89),
                 fontWeight: FontWeight.normal,
               ),
             ),
-            onTap: () => null,
+            onTap: () => {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return EditScreen();
+              })),
+            },
           ),
           Divider(),
           ListTile(

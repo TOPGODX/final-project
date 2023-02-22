@@ -150,6 +150,7 @@ class _addscreen extends State<addscreen> {
     map['time'] = time;
     map['lat'] = lat;
     map['lng'] = lng;
+    map['phone'] = phone;
 
     final top = FirebaseFirestore.instance
         .collection("Producr")
@@ -219,6 +220,20 @@ class _addscreen extends State<addscreen> {
         Container(height: 20), //space between text field
 
         TextFormField(
+            onChanged: (value) => detail = value.trim(),
+            decoration: InputDecoration(
+              labelText: "รายละเอียด", //babel text
+
+              prefixIcon: Icon(Icons.details_sharp,
+                  color: Colors.green.shade400), //prefix iocn
+
+              labelStyle: TextStyle(fontSize: 13, color: Colors.redAccent),
+              border: OutlineInputBorder(), //label style
+            )),
+
+        Container(height: 20), //space between text field
+
+        TextFormField(
             onChanged: (value) => address = value.trim(),
             decoration: InputDecoration(
               labelText: "ที่อยู่ร้าน", //babel text
@@ -254,19 +269,6 @@ class _addscreen extends State<addscreen> {
               border: OutlineInputBorder(), //label style
             )),
 
-        Container(height: 20), //space between text field
-
-        TextFormField(
-            onChanged: (value) => detail = value.trim(),
-            decoration: InputDecoration(
-              labelText: "รายละเอียด", //babel text
-
-              prefixIcon: Icon(Icons.details_sharp,
-                  color: Colors.green.shade400), //prefix iocn
-
-              labelStyle: TextStyle(fontSize: 13, color: Colors.redAccent),
-              border: OutlineInputBorder(), //label style
-            )),
         Container(height: 20),
         lat == null ? MyStyle().showProgress() : showMap(),
 

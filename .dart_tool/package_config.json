@@ -38,6 +38,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "clippy_flutter",
+      "rootUri": "file:///C:/Users/TOP/AppData/Local/Pub/Cache/hosted/pub.dev/clippy_flutter-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "clock",
       "rootUri": "file:///C:/Users/TOP/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
@@ -494,7 +500,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2023-02-20T16:49:41.684464Z",
+  "generated": "2023-02-21T14:04:46.846576Z",
   "generator": "pub",
   "generatorVersion": "2.19.2"
 }

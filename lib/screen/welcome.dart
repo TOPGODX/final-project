@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:loginsystem/screen/itemPage.dart';
 import 'package:loginsystem/screen/login.dart';
 import 'package:loginsystem/screen/NavBar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 List<ProducrModel> ProducrModels = List();
+double top = 0;
 
 class _WelcomeScreen extends State<WelcomeScreen> {
   final auth = FirebaseAuth.instance;
@@ -54,7 +56,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
   //     ],
   //   );
   // }
-
+  int top;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +76,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
           child: StreamBuilder<QuerySnapshot>(
               stream:
                   FirebaseFirestore.instance.collection("Producr").snapshots(),
+                  
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   print('xcxzcz');
@@ -84,6 +87,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                       itemCount: snapshot.data.docs.length,
                       itemBuilder: (BuildContext buildContext, int index) {
                         print(snapshot.data.docs[index]['name']);
+                        print(snapshot.data.docs.contains('review'));
                         // return ShowListView(index);
 
                         return SingleChildScrollView(
@@ -127,7 +131,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                         width: 15,
                                       ),
                                       Container(
-                                        width: 160,
+                                        width: 140,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -173,11 +177,15 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                             Row(
                                               children: [
                                                 RatingBar.builder(
-                                                  initialRating: 5,
+                                                  initialRating:
+                                                      4.5, //ดาวที่ได้
                                                   minRating: 1,
                                                   direction: Axis.horizontal,
                                                   itemCount: 5,
+                                                  ignoreGestures: true,
                                                   itemSize: 15,
+                                                  allowHalfRating:
+                                                      true, //ครึ่งดาว
                                                   itemPadding:
                                                       EdgeInsets.symmetric(
                                                           horizontal: 2),
@@ -186,10 +194,12 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                                     Icons.star,
                                                     color: Colors.orange,
                                                   ),
-                                                  onRatingUpdate: (index) {},
+                                                  onRatingUpdate: (top) {
+                                                    print(top);
+                                                  },
                                                 ),
                                                 Text(
-                                                  " ( 4.0 ) ",
+                                                  " ( 4.5 ) ",
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       fontWeight:
@@ -202,15 +212,24 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                       ),
                                       Padding(
                                         padding:
-                                            EdgeInsets.symmetric(vertical: 5),
+                                            EdgeInsets.symmetric(vertical: 1),
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Icon(
-                                              Icons.search,
+                                            IconButton(
+                                              icon: const Icon(Icons.search),
                                               color: Colors.grey,
-                                            )
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        ResultPage(index),
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
                                       )

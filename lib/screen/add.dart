@@ -104,7 +104,7 @@ class _addscreen extends State<addscreen> {
                   height: 200,
                   child: file == null
                       ? Image.network(
-                          "https://cdn.discordapp.com/attachments/846300874976133161/1076429263412142100/396915-200.png",
+                          "https://media.discordapp.net/attachments/770703788221792309/1078416077085749248/salad-gb4e207f28_1280.png?width=940&height=676",
                           height: 300,
                           width: 300,
                         )

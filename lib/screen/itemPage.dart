@@ -51,7 +51,6 @@ class _ResultPage extends State<ResultPage> {
                   double rating = 0.0;
                   int ratingx = 0;
 
-                  print(snapshot.data.docs[index]['rating']);
                   print(snapshot.data.docs.length);
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
                     double creditMulSGPA =

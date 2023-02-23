@@ -13,7 +13,7 @@ import 'dart:async';
 import 'package:loginsystem/model/data.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginsystem/screen/test.dart';
+import 'package:loginsystem/screen/editpro.dart';
 import 'package:loginsystem/screen/welcome.dart';
 
 class EditScreen extends StatefulWidget {
@@ -167,55 +167,97 @@ class _EditScreen extends State<EditScreen> {
                                       ),
                                       Padding(
                                         padding:
-                                            EdgeInsets.symmetric(vertical: 1),
+                                            EdgeInsets.symmetric(vertical: 5),
                                         child: Column(
                                           children: [
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              color: Colors.green,
-                                              onPressed: () {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
+                                            PopupMenuButton(
+                                              itemBuilder: (context) {
+                                                return [
+                                                  PopupMenuItem(
+                                                    value: 'add',
+                                                    child: ListTile(
+                                                      leading: Icon(Icons.add),
+                                                      iconColor: Colors.green,
+                                                      title: Text('Add'),
+                                                    ),
+                                                  ),
+                                                  PopupMenuItem(
+                                                    value: 'edit',
+                                                    child: ListTile(
+                                                      leading: Icon(Icons.edit),
+                                                      iconColor: Colors.blue,
+                                                      title: Text('Edit'),
+                                                    ),
+                                                  ),
+                                                  PopupMenuItem(
+                                                    value: 'delete',
+                                                    child: ListTile(
+                                                      leading:
+                                                          Icon(Icons.delete),
+                                                      iconColor: Colors.red,
+                                                      title: Text('Delete'),
+                                                    ),
+                                                  )
+                                                ];
+                                              },
+                                              onSelected: (String value) {
+                                                if (value == 'add') {
+                                                  Navigator.of(context)
+                                                      .push(MaterialPageRoute(
                                                     builder: (BuildContext
                                                             context) =>
-                                                        Edit(index),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.delete),
-                                              color: Colors.red,
-                                              onPressed: () =>
+                                                        Editpro(
+                                                            snapshot.data
+                                                                .docs[index].id,
+                                                            index),
+                                                  ));
+                                                }
+                                                if (value == 'edit') {
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          Edit(index),
+                                                    ),
+                                                  );
+                                                }
+                                                if (value == 'delete') {
                                                   showDialog<String>(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) =>
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
                                                         AlertDialog(
-                                                  title:
-                                                      const Text('แจ้งเตือน'),
-                                                  content: const Text(
-                                                      'ต้องจะลบหรือไม่'),
-                                                  actions: <Widget>[
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(context,
-                                                              'Cancel'),
-                                                      child:
-                                                          const Text('ยกเลิก'),
+                                                      title: const Text(
+                                                          'แจ้งเตือน'),
+                                                      content: const Text(
+                                                          'ต้องจะลบหรือไม่'),
+                                                      actions: <Widget>[
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context,
+                                                                  'Cancel'),
+                                                          child: const Text(
+                                                              'ยกเลิก'),
+                                                        ),
+                                                        TextButton(
+                                                          child: const Text(
+                                                              'ตกลง'),
+                                                          onPressed: () => {
+                                                            delete(snapshot
+                                                                .data
+                                                                .docs[index]
+                                                                .id),
+                                                            Navigator.pop(
+                                                                context,
+                                                                'ตกลง'),
+                                                          },
+                                                        ),
+                                                      ],
                                                     ),
-                                                    TextButton(
-                                                      child: const Text('ตกลง'),
-                                                      onPressed: () => {
-                                                        delete(snapshot.data
-                                                            .docs[index].id),
-                                                        Navigator.pop(
-                                                            context, 'ตกลง'),
-                                                      },
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
+                                                  );
+                                                }
+                                              },
                                             ),
                                           ],
                                         ),

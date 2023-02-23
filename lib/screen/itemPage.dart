@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:loginsystem/screen/showshop.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loginsystem/screen/NavBar.dart';
@@ -9,10 +10,24 @@ import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-class ResultPage extends StatelessWidget {
+class ResultPage extends StatefulWidget {
+  final String id;
   final int index;
-  ResultPage(this.index);
+  ResultPage(this.id, this.index);
+  @override
+  State<ResultPage> createState() {
+    return _ResultPage(this.id, this.index);
+  }
+}
 
+class _ResultPage extends State<ResultPage> {
+  final String id;
+  final int index;
+  double kub;
+  double nut;
+
+  _ResultPage(this.id, this.index);
+  double rating = 0.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,191 +36,388 @@ class ResultPage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Center(
           child: StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection("Producr").snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection('Producr')
+                  .doc(id)
+                  .collection('rating')
+                  .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   print('xcxzcz');
                   return Text("Loading.....");
                 } else {
-                  print(snapshot.data.docs[index]['name']);
+                  double sumOfCreditMulSGPA = 0, sumOfCredit = 0;
+                  double king = 0.0;
+                  double rating = 0.0;
+                  int ratingx = 0;
 
-                  Set<Marker> myMarker() {
-                    return <Marker>[
-                      Marker(
-                          markerId: MarkerId(snapshot.data.docs[index]['name']),
-                          position: LatLng(snapshot.data.docs[index]['lat'],
-                              snapshot.data.docs[index]['lng']),
-                          infoWindow: InfoWindow(
-                            title: snapshot.data.docs[index]['name'],
-                            snippet: 'เวลาเปิดปิด ' +
-                                snapshot.data.docs[index]['time'] +
-                                ' น.',
-                          ))
-                    ].toSet();
+                  print(snapshot.data.docs[index]['rating']);
+                  print(snapshot.data.docs.length);
+                  for (int i = 0; i < snapshot.data.docs.length; i++) {
+                    double creditMulSGPA =
+                        king + snapshot.data.docs[i]['rating'].toDouble();
+                    sumOfCreditMulSGPA += creditMulSGPA;
                   }
 
-                  Container showMap() {
-                    LatLng latLng = LatLng(snapshot.data.docs[index]['lat'],
-                        snapshot.data.docs[index]['lng']);
-                    CameraPosition cameraPosition =
-                        CameraPosition(target: latLng, zoom: 15.0);
-                    return Container(
-                      height: 200,
-                      child: GoogleMap(
-                        initialCameraPosition: cameraPosition,
-                        mapType: MapType.normal,
-                        onMapCreated: (controller) {},
-                        markers: myMarker(),
-                      ),
-                    );
-                  }
+                  ratingx = snapshot.data.docs.length;
 
-                  return Padding(
-                    padding: EdgeInsets.only(top: 5),
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Image.network(
-                            snapshot.data.docs[index]['url'],
-                            height: 200,
-                            width: double.infinity,
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          color: Color.fromARGB(255, 253, 253, 253),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 0,
-                                    bottom: 0,
-                                  ),
-                                  child: Row(
+                  rating = sumOfCreditMulSGPA / snapshot.data.docs.length;
+
+                  return Scaffold(
+                    body: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Center(
+                        child: StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection("Producr")
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData) {
+                                print('xcxzcz');
+                                return Text("Loading.....");
+                              } else {
+                                final mainCollectionRef = FirebaseFirestore
+                                    .instance
+                                    .collection('Producr');
+                                final mainDocRef = mainCollectionRef.doc(id);
+                                final subCollectionRef =
+                                    mainDocRef.collection('rating');
+                                @override
+                                Set<Marker> myMarker() {
+                                  return <Marker>[
+                                    Marker(
+                                        markerId: MarkerId(
+                                            snapshot.data.docs[index]['name']),
+                                        position: LatLng(
+                                            snapshot.data.docs[index]['lat'],
+                                            snapshot.data.docs[index]['lng']),
+                                        infoWindow: InfoWindow(
+                                          title: snapshot.data.docs[index]
+                                              ['name'],
+                                          snippet: 'เวลาเปิดปิด ' +
+                                              snapshot.data.docs[index]
+                                                  ['time'] +
+                                              ' น.',
+                                        ))
+                                  ].toSet();
+                                }
+
+                                Container showMap() {
+                                  LatLng latLng = LatLng(
+                                      snapshot.data.docs[index]['lat'],
+                                      snapshot.data.docs[index]['lng']);
+                                  CameraPosition cameraPosition =
+                                      CameraPosition(
+                                          target: latLng, zoom: 15.0);
+                                  return Container(
+                                    height: 200,
+                                    child: GoogleMap(
+                                      initialCameraPosition: cameraPosition,
+                                      mapType: MapType.normal,
+                                      onMapCreated: (controller) {},
+                                      markers: myMarker(),
+                                    ),
+                                  );
+                                }
+
+                                return Padding(
+                                  padding: EdgeInsets.only(top: 5),
+                                  child: ListView(
                                     children: [
-                                      Text(
-                                        snapshot.data.docs[index]['name'],
-                                        style: TextStyle(
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.bold,
+                                      Padding(
+                                        padding: EdgeInsets.all(16),
+                                        child: Image.network(
+                                          snapshot.data.docs[index]['url'],
+                                          height: 200,
+                                          width: double.infinity,
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        color:
+                                            Color.fromARGB(255, 253, 253, 253),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 0,
+                                                  bottom: 0,
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      snapshot.data.docs[index]
+                                                          ['name'],
+                                                      style: TextStyle(
+                                                        fontSize: 28,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Ink(
+                                                      decoration:
+                                                          const ShapeDecoration(
+                                                        color: Colors.black,
+                                                        shape: CircleBorder(),
+                                                      ),
+                                                      child: IconButton(
+                                                        icon: const Icon(
+                                                          Icons
+                                                              .shopping_basket_outlined,
+                                                          size: 30,
+                                                        ),
+                                                        color: Colors.cyan,
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .push(
+                                                                  MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                Showshop(
+                                                                    snapshot
+                                                                        .data
+                                                                        .docs[
+                                                                            index]
+                                                                        .id,
+                                                                    index),
+                                                          ));
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 0, bottom: 10),
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      RatingBar.builder(
+                                                        initialRating:
+                                                            rating, //ดาวที่ได้
+                                                        minRating: 1,
+                                                        direction:
+                                                            Axis.horizontal,
+                                                        itemCount: 5,
+                                                        ignoreGestures: false,
+                                                        itemSize: 15,
+                                                        allowHalfRating:
+                                                            true, //ครึ่งดาว
+                                                        itemPadding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 2),
+                                                        itemBuilder:
+                                                            (context, _) =>
+                                                                Icon(
+                                                          Icons.star,
+                                                          color: Colors.orange,
+                                                        ),
+                                                        onRatingUpdate:
+                                                            (kub) {},
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          RatingBar.builder(
+                                                            initialRating:
+                                                                rating, //ดาวที่ได้
+                                                            minRating: 1,
+                                                            direction:
+                                                                Axis.horizontal,
+                                                            itemCount: 1,
+                                                            ignoreGestures:
+                                                                false,
+                                                            itemSize: 15,
+                                                            allowHalfRating:
+                                                                true, //ครึ่งดาว
+                                                            itemPadding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        2),
+                                                            itemBuilder:
+                                                                (context, _) =>
+                                                                    Icon(
+                                                              Icons.star,
+                                                              color:
+                                                                  Colors.orange,
+                                                            ),
+                                                            onRatingUpdate:
+                                                                (you) {
+                                                              showDialog<void>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (BuildContext
+                                                                        context) {
+                                                                  return AlertDialog(
+                                                                    title:
+                                                                        const Text(
+                                                                      'คะแนนรีวิว',
+                                                                      style: TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                    actions: <
+                                                                        Widget>[
+                                                                      Center(
+                                                                        child: RatingBar
+                                                                            .builder(
+                                                                          initialRating:
+                                                                              rating, //ดาวที่ได้
+                                                                          minRating:
+                                                                              1,
+                                                                          direction:
+                                                                              Axis.horizontal,
+                                                                          itemCount:
+                                                                              5,
+                                                                          ignoreGestures:
+                                                                              false,
+                                                                          itemSize:
+                                                                              30, //ครึ่งดาว
+                                                                          itemPadding:
+                                                                              EdgeInsets.symmetric(horizontal: 2),
+                                                                          itemBuilder: (context, _) =>
+                                                                              Icon(
+                                                                            Icons.star,
+                                                                            color:
+                                                                                Colors.orange,
+                                                                          ),
+                                                                          onRatingUpdate:
+                                                                              (kub) {
+                                                                            subCollectionRef.add({
+                                                                              'rating': kub,
+                                                                            });
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      Row(
+                                                                        children: [
+                                                                          Container(
+                                                                              height: 20)
+                                                                        ],
+                                                                      )
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                            },
+                                                          ),
+                                                          Text(
+                                                            rating.toStringAsFixed(
+                                                                    2) +
+                                                                ('($ratingx)'),
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ]),
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Image.network(
+                                                    "https://cdn.discordapp.com/attachments/846300874976133161/1076955671842541619/ezuelEWRrrIsW6VFUU7Gt91bR60AH6B8LHdB9n2M8DAAAAAElFTkSuQmCC.png",
+                                                    height: 30,
+                                                    width: 30,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    "  เวลาเปิด " +
+                                                        snapshot.data
+                                                                .docs[index]
+                                                            ['time'] +
+                                                        " น",
+                                                    style: GoogleFonts.pridi(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Image.network(
+                                                    "https://cdn.discordapp.com/attachments/846300874976133161/1077647667972292669/844e8cd4ab26c82286238471f0e5a901.png",
+                                                    height: 30,
+                                                    width: 30,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    '  ' +
+                                                        snapshot.data
+                                                                .docs[index]
+                                                            ['phone'],
+                                                    style: GoogleFonts.pridi(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Image.network(
+                                                    "https://cdn.discordapp.com/attachments/846300874976133161/1077651630012514436/4781517.png",
+                                                    height: 30,
+                                                    width: 30,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 15,
+                                                  ),
+                                                  Flexible(
+                                                    child: Text(snapshot
+                                                            .data.docs[index]
+                                                        ['address']),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                              snapshot.data.docs[index]
+                                                          ['lat'] ==
+                                                      null
+                                                  ? MyStyle().showProgress()
+                                                  : showMap(),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 0, bottom: 10),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        RatingBar.builder(
-                                          initialRating: 4.5, //ดาวที่ได้
-                                          minRating: 1,
-                                          direction: Axis.horizontal,
-                                          itemCount: 5,
-                                          ignoreGestures: false,
-                                          itemSize: 15,
-                                          allowHalfRating: true, //ครึ่งดาว
-                                          itemPadding: EdgeInsets.symmetric(
-                                              horizontal: 2),
-                                          itemBuilder: (context, _) => Icon(
-                                            Icons.star,
-                                            color: Colors.orange,
-                                          ),
-                                          onRatingUpdate: (top) {
-                                            print(top);
-                                          },
-                                        ),
-                                        Text(
-                                          " ( 4.5 ) ",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ]),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    Image.network(
-                                      "https://cdn.discordapp.com/attachments/846300874976133161/1076955671842541619/ezuelEWRrrIsW6VFUU7Gt91bR60AH6B8LHdB9n2M8DAAAAAElFTkSuQmCC.png",
-                                      height: 30,
-                                      width: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      "  เวลาเปิด " +
-                                          snapshot.data.docs[index]['time'] +
-                                          " น",
-                                      style: GoogleFonts.pridi(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    Image.network(
-                                      "https://cdn.discordapp.com/attachments/846300874976133161/1077647667972292669/844e8cd4ab26c82286238471f0e5a901.png",
-                                      height: 30,
-                                      width: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      '  ' + snapshot.data.docs[index]['phone'],
-                                      style: GoogleFonts.pridi(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image.network(
-                                      "https://cdn.discordapp.com/attachments/846300874976133161/1077651630012514436/4781517.png",
-                                      height: 30,
-                                      width: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                          snapshot.data.docs[index]['address']),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                snapshot.data.docs[index]['lat'] == null
-                                    ? MyStyle().showProgress()
-                                    : showMap(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                                );
+                              }
+                            }),
+                      ),
                     ),
                   );
                 }

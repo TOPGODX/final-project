@@ -11,6 +11,7 @@ import 'dart:async';
 import 'package:loginsystem/model/data.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginsystem/screen/editpro.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -76,7 +77,6 @@ class _WelcomeScreen extends State<WelcomeScreen> {
           child: StreamBuilder<QuerySnapshot>(
               stream:
                   FirebaseFirestore.instance.collection("Producr").snapshots(),
-                  
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   print('xcxzcz');
@@ -225,7 +225,10 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                                   MaterialPageRoute(
                                                     builder: (BuildContext
                                                             context) =>
-                                                        ResultPage(index),
+                                                        ResultPage(
+                                                            snapshot.data
+                                                                .docs[index].id,
+                                                            index),
                                                   ),
                                                 );
                                               },

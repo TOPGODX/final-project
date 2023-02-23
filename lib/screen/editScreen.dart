@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:loginsystem/model/profile.dart';
+import 'package:loginsystem/screen/edit.dart';
 import 'package:loginsystem/screen/my_Style.dart';
-import 'package:loginsystem/screen/test.dart';
+import 'package:loginsystem/screen/editpro.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/NavBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -62,7 +63,6 @@ class _Editx extends State<Edit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavBar(),
         appBar: AppBar(),
         body: SingleChildScrollView(
           child: Container(
@@ -262,12 +262,12 @@ class _Editx extends State<Edit> {
                               } else {
                                 Map<String, dynamic> map = Map();
                                 map['name'] = _name.text;
-                                map['address'] = address;
-                                map['detail'] = detail;
-                                map['time'] = time;
+                                map['address'] = _address.text;
+                                map['detail'] = _detail.text;
+                                map['time'] = _time.text;
                                 map['lat'] = lat;
                                 map['lng'] = lng;
-                                map['phone'] = phone;
+                                map['phone'] = _phone.text;
 
                                 FirebaseFirestore.instance
                                     .collection("Producr")
@@ -275,7 +275,7 @@ class _Editx extends State<Edit> {
                                     .update(map);
 
                                 MaterialPageRoute route = MaterialPageRoute(
-                                  builder: (value) => WelcomeScreen(),
+                                  builder: (value) => EditScreen(),
                                 );
                                 Navigator.of(context).pushAndRemoveUntil(
                                     route, (value) => false);

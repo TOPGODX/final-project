@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class addscreen extends StatefulWidget {
 
 class _addscreen extends State<addscreen> {
   File file;
-
+  final auth = FirebaseAuth.instance;
   double lat, lng;
 
   @override
@@ -31,8 +32,7 @@ class _addscreen extends State<addscreen> {
   }
 
   Future<Null> findlaglng() async {
-    print('xxxxx');
-    LocationData locationData = await locationDatax();
+    LocationData locationData = await findLocationData();
     setState(() {
       lat = locationData.latitude;
       lng = locationData.longitude;
@@ -41,7 +41,7 @@ class _addscreen extends State<addscreen> {
     print('lat =$lat,lng = $lng');
   }
 
-  Future<LocationData> locationDatax() async {
+  Future<LocationData> findLocationData() async {
     Location location = Location();
     try {
       print('xxxxx');
@@ -151,6 +151,7 @@ class _addscreen extends State<addscreen> {
     map['lat'] = lat;
     map['lng'] = lng;
     map['phone'] = phone;
+    map['email'] = auth.currentUser?.email;
 
     final top = FirebaseFirestore.instance
         .collection("Producr")
@@ -270,6 +271,7 @@ class _addscreen extends State<addscreen> {
             )),
 
         Container(height: 20),
+
         lat == null ? MyStyle().showProgress() : showMap(),
 
         Container(height: 20),

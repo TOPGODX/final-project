@@ -9,6 +9,10 @@ import 'package:loginsystem/screen/my_Style.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ResultPage extends StatefulWidget {
   final String id;
@@ -27,6 +31,8 @@ class _ResultPage extends State<ResultPage> {
   double nut;
 
   _ResultPage(this.id, this.index);
+  final auth = FirebaseAuth.instance;
+
   double rating = 0.0;
   @override
   Widget build(BuildContext context) {
@@ -159,36 +165,56 @@ class _ResultPage extends State<ResultPage> {
                                                             FontWeight.bold,
                                                       ),
                                                     ),
-                                                    Ink(
-                                                      decoration:
-                                                          const ShapeDecoration(
-                                                        color: Colors.black,
-                                                        shape: CircleBorder(),
-                                                      ),
-                                                      child: IconButton(
-                                                        icon: const Icon(
-                                                          Icons
-                                                              .shopping_basket_outlined,
-                                                          size: 30,
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Container(
+                                                          height: 30,
                                                         ),
-                                                        color: Colors.cyan,
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .push(
-                                                                  MaterialPageRoute(
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                Showshop(
-                                                                    snapshot
-                                                                        .data
-                                                                        .docs[
-                                                                            index]
-                                                                        .id,
-                                                                    index),
-                                                          ));
-                                                        },
-                                                      ),
-                                                    ),
+                                                        IconButton(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          icon: Image.network(
+                                                            "https://cdn.discordapp.com/attachments/819007560120008726/1079127463424168036/basket-icon_34490.png",
+                                                            height: 200,
+                                                            width: 200,
+                                                          ),
+                                                          color: Colors.cyan,
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                                    MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  Showshop(
+                                                                      snapshot
+                                                                          .data
+                                                                          .docs[
+                                                                              index]
+                                                                          .id,
+                                                                      index),
+                                                            ));
+                                                          },
+                                                        ),
+                                                        Text(
+                                                          " สินค้า",
+                                                          style:
+                                                              GoogleFonts.kanit(
+                                                            color: Colors.blue,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          height: 10,
+                                                        )
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                               ),
@@ -250,64 +276,72 @@ class _ResultPage extends State<ResultPage> {
                                                             ),
                                                             onRatingUpdate:
                                                                 (you) {
-                                                              showDialog<void>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                        context) {
-                                                                  return AlertDialog(
-                                                                    title:
-                                                                        const Text(
-                                                                      'คะแนนรีวิว',
-                                                                      style: TextStyle(
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                    actions: <
-                                                                        Widget>[
-                                                                      Center(
-                                                                        child: RatingBar
-                                                                            .builder(
-                                                                          initialRating:
-                                                                              rating, //ดาวที่ได้
-                                                                          minRating:
-                                                                              1,
-                                                                          direction:
-                                                                              Axis.horizontal,
-                                                                          itemCount:
-                                                                              5,
-                                                                          ignoreGestures:
-                                                                              false,
-                                                                          itemSize:
-                                                                              30, //ครึ่งดาว
-                                                                          itemPadding:
-                                                                              EdgeInsets.symmetric(horizontal: 2),
-                                                                          itemBuilder: (context, _) =>
-                                                                              Icon(
-                                                                            Icons.star,
-                                                                            color:
-                                                                                Colors.orange,
-                                                                          ),
-                                                                          onRatingUpdate:
-                                                                              (kub) {
-                                                                            subCollectionRef.add({
-                                                                              'rating': kub,
-                                                                            });
-                                                                            Navigator.of(context).pop();
-                                                                          },
-                                                                        ),
+                                                              if (auth.currentUser
+                                                                      ?.email !=
+                                                                  snapshot.data
+                                                                              .docs[
+                                                                          index]
+                                                                      [
+                                                                      'email']) {
+                                                                showDialog<
+                                                                    void>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                          context) {
+                                                                    return AlertDialog(
+                                                                      title:
+                                                                          const Text(
+                                                                        'คะแนนรีวิว',
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold),
                                                                       ),
-                                                                      Row(
-                                                                        children: [
-                                                                          Container(
-                                                                              height: 20)
-                                                                        ],
-                                                                      )
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
+                                                                      actions: <
+                                                                          Widget>[
+                                                                        Center(
+                                                                          child:
+                                                                              RatingBar.builder(
+                                                                            initialRating:
+                                                                                rating, //ดาวที่ได้
+                                                                            minRating:
+                                                                                1,
+                                                                            direction:
+                                                                                Axis.horizontal,
+                                                                            itemCount:
+                                                                                5,
+                                                                            ignoreGestures:
+                                                                                false,
+                                                                            itemSize:
+                                                                                30, //ครึ่งดาว
+                                                                            itemPadding:
+                                                                                EdgeInsets.symmetric(horizontal: 2),
+                                                                            itemBuilder: (context, _) =>
+                                                                                Icon(
+                                                                              Icons.star,
+                                                                              color: Colors.orange,
+                                                                            ),
+                                                                            onRatingUpdate:
+                                                                                (kub) {
+                                                                              subCollectionRef.add({
+                                                                                'email': auth.currentUser?.email,
+                                                                                'rating': kub,
+                                                                              });
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                        Row(
+                                                                          children: [
+                                                                            Container(height: 20)
+                                                                          ],
+                                                                        )
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              }
                                                             },
                                                           ),
                                                           Text(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:loginsystem/screen/login.dart';
+import 'package:loginsystem/screen/showpro.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/edit.dart';
 import 'package:loginsystem/screen/add.dart';
@@ -43,14 +44,14 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.store, color: Colors.red),
             title: Text(
-              'Show List',
+              'Show Shop',
               style: GoogleFonts.itim(
                   fontSize: 18,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
-              'แสดงรายการ',
+              'แสดงร้านค้า',
               style: GoogleFonts.mitr(
                   color: Color.fromARGB(238, 90, 89, 89),
                   fontWeight: FontWeight.normal),
@@ -63,7 +64,31 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.add_circle, color: Colors.green),
+            leading:
+                Icon(Icons.production_quantity_limits, color: Colors.green),
+            title: Text(
+              'Show Product',
+              style: GoogleFonts.itim(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              'แสดงสินค้า',
+              style: GoogleFonts.mitr(
+                color: Color.fromARGB(238, 90, 89, 89),
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return Showpro();
+              }));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.add_circle, color: Colors.blue),
             title: Text(
               'Add Shop',
               style: GoogleFonts.itim(
@@ -85,8 +110,9 @@ class NavBar extends StatelessWidget {
               }));
             },
           ),
+          //if (auth.currentUser?.email == 'top@hotmail.com')
           ListTile(
-            leading: Icon(Icons.info, color: Colors.blue),
+            leading: Icon(Icons.info, color: Colors.pink),
             title: Text(
               'information',
               style: GoogleFonts.itim(

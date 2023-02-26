@@ -22,6 +22,7 @@ class EditScreen extends StatefulWidget {
 }
 
 class _EditScreen extends State<EditScreen> {
+  final auth = FirebaseAuth.instance;
   int top;
   @override
   Widget build(BuildContext context) {
@@ -50,222 +51,176 @@ class _EditScreen extends State<EditScreen> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
                             child: Column(children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 5),
-                                child: Container(
-                                  width: 380,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 3,
-                                          blurRadius: 10,
-                                          offset: Offset(0, 3),
-                                        )
-                                      ]),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 15,
-                                      ),
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          child: Image.network(
-                                            snapshot.data.docs[index]['url'],
-                                            height: 150,
-                                            width: 150,
+                              if (auth.currentUser?.email ==
+                                  snapshot.data.docs[index]['email'])
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5),
+                                  child: Container(
+                                    width: 380,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 3,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 3),
+                                          )
+                                        ]),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            child: Image.network(
+                                              snapshot.data.docs[index]['url'],
+                                              height: 150,
+                                              width: 150,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 15,
-                                      ),
-                                      Container(
-                                        width: 140,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              snapshot.data.docs[index]['name'],
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Text(
-                                              snapshot.data.docs[index]
-                                                  ['detail'],
-                                              style: GoogleFonts.kanit(
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Image.network(
-                                                  "https://cdn.discordapp.com/attachments/846300874976133161/1076955671842541619/ezuelEWRrrIsW6VFUU7Gt91bR60AH6B8LHdB9n2M8DAAAAAElFTkSuQmCC.png",
-                                                  height: 18,
-                                                  width: 18,
-                                                ),
-                                                Text(
-                                                  "  เวลาเปิด " +
-                                                      snapshot.data.docs[index]
-                                                          ['time'] +
-                                                      " น",
-                                                  style: GoogleFonts.pridi(
-                                                    fontSize: 11,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                RatingBar.builder(
-                                                  initialRating:
-                                                      4.5, //ดาวที่ได้
-                                                  minRating: 1,
-                                                  direction: Axis.horizontal,
-                                                  itemCount: 5,
-                                                  ignoreGestures: true,
-                                                  itemSize: 15,
-                                                  allowHalfRating:
-                                                      true, //ครึ่งดาว
-                                                  itemPadding:
-                                                      EdgeInsets.symmetric(
-                                                          horizontal: 2),
-                                                  itemBuilder: (context, _) =>
-                                                      Icon(
-                                                    Icons.star,
-                                                    color: Colors.orange,
-                                                  ),
-                                                  onRatingUpdate: (top) {
-                                                    print(top);
-                                                  },
-                                                ),
-                                                Text(
-                                                  " ( 4.5 ) ",
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                        SizedBox(
+                                          width: 15,
                                         ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 5),
-                                        child: Column(
-                                          children: [
-                                            PopupMenuButton(
-                                              itemBuilder: (context) {
-                                                return [
-                                                  PopupMenuItem(
-                                                    value: 'add',
-                                                    child: ListTile(
-                                                      leading: Icon(Icons.add),
-                                                      iconColor: Colors.green,
-                                                      title: Text('Add'),
+                                        Container(
+                                          width: 140,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                snapshot.data.docs[index]
+                                                    ['name'],
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(
+                                                snapshot.data.docs[index]
+                                                    ['detail'],
+                                                style: GoogleFonts.kanit(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Column(
+                                            children: [
+                                              PopupMenuButton(
+                                                itemBuilder: (context) {
+                                                  return [
+                                                    PopupMenuItem(
+                                                      value: 'add',
+                                                      child: ListTile(
+                                                        leading:
+                                                            Icon(Icons.add),
+                                                        iconColor: Colors.green,
+                                                        title: Text('Add'),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    value: 'edit',
-                                                    child: ListTile(
-                                                      leading: Icon(Icons.edit),
-                                                      iconColor: Colors.blue,
-                                                      title: Text('Edit'),
+                                                    PopupMenuItem(
+                                                      value: 'edit',
+                                                      child: ListTile(
+                                                        leading:
+                                                            Icon(Icons.edit),
+                                                        iconColor: Colors.blue,
+                                                        title: Text('Edit'),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    value: 'delete',
-                                                    child: ListTile(
-                                                      leading:
-                                                          Icon(Icons.delete),
-                                                      iconColor: Colors.red,
-                                                      title: Text('Delete'),
-                                                    ),
-                                                  )
-                                                ];
-                                              },
-                                              onSelected: (String value) {
-                                                if (value == 'add') {
-                                                  Navigator.of(context)
-                                                      .push(MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        Editpro(
-                                                            snapshot.data
-                                                                .docs[index].id,
-                                                            index),
-                                                  ));
-                                                }
-                                                if (value == 'edit') {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
+                                                    PopupMenuItem(
+                                                      value: 'delete',
+                                                      child: ListTile(
+                                                        leading:
+                                                            Icon(Icons.delete),
+                                                        iconColor: Colors.red,
+                                                        title: Text('Delete'),
+                                                      ),
+                                                    )
+                                                  ];
+                                                },
+                                                onSelected: (String value) {
+                                                  if (value == 'add') {
+                                                    Navigator.of(context)
+                                                        .push(MaterialPageRoute(
                                                       builder: (BuildContext
                                                               context) =>
-                                                          Edit(index),
-                                                    ),
-                                                  );
-                                                }
-                                                if (value == 'delete') {
-                                                  showDialog<String>(
-                                                    context: context,
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        AlertDialog(
-                                                      title: const Text(
-                                                          'แจ้งเตือน'),
-                                                      content: const Text(
-                                                          'ต้องจะลบหรือไม่'),
-                                                      actions: <Widget>[
-                                                        TextButton(
-                                                          onPressed: () =>
+                                                          Editpro(
+                                                              snapshot
+                                                                  .data
+                                                                  .docs[index]
+                                                                  .id,
+                                                              index),
+                                                    ));
+                                                  }
+                                                  if (value == 'edit') {
+                                                    Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            Edit(index),
+                                                      ),
+                                                    );
+                                                  }
+                                                  if (value == 'delete') {
+                                                    showDialog<String>(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          AlertDialog(
+                                                        title: const Text(
+                                                            'แจ้งเตือน'),
+                                                        content: const Text(
+                                                            'ต้องจะลบหรือไม่'),
+                                                        actions: <Widget>[
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    context,
+                                                                    'Cancel'),
+                                                            child: const Text(
+                                                                'ยกเลิก'),
+                                                          ),
+                                                          TextButton(
+                                                            child: const Text(
+                                                                'ตกลง'),
+                                                            onPressed: () => {
+                                                              delete(snapshot
+                                                                  .data
+                                                                  .docs[index]
+                                                                  .id),
                                                               Navigator.pop(
                                                                   context,
-                                                                  'Cancel'),
-                                                          child: const Text(
-                                                              'ยกเลิก'),
-                                                        ),
-                                                        TextButton(
-                                                          child: const Text(
-                                                              'ตกลง'),
-                                                          onPressed: () => {
-                                                            delete(snapshot
-                                                                .data
-                                                                .docs[index]
-                                                                .id),
-                                                            Navigator.pop(
-                                                                context,
-                                                                'ตกลง'),
-                                                          },
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
+                                                                  'ตกลง'),
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  }
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              )
+                                )
                             ]),
                           ),
                         );

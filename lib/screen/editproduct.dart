@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:loginsystem/screen/addpro.dart';
+import 'package:loginsystem/screen/addxproduct.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loginsystem/screen/NavBar.dart';
@@ -115,15 +115,28 @@ class _Editpro extends State<Editpro> {
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.black),
                                             ),
-                                            Text(
-                                              '${snapshot.data.docs[top]['price']}' +
-                                                  '   บาท',
-                                              textAlign: TextAlign.center,
-                                              style: GoogleFonts.pridi(
-                                                color: Colors.black,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.normal,
-                                              ),
+                                            Row(
+                                              children: [
+                                                Image.network(
+                                                  "https://cdn.discordapp.com/attachments/819007560120008726/1081390847318302831/green-dollar-png-download-image.png",
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  '${snapshot.data.docs[top]['price']}' +
+                                                      '   บาท',
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.pridi(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),

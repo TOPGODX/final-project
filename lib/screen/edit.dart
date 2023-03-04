@@ -13,7 +13,7 @@ import 'dart:async';
 import 'package:loginsystem/model/data.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginsystem/screen/editpro.dart';
+import 'package:loginsystem/screen/editproduct.dart';
 import 'package:loginsystem/screen/welcome.dart';
 
 class EditScreen extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:loginsystem/screen/my_Style.dart';
-import 'package:loginsystem/screen/editpro.dart';
+import 'package:loginsystem/screen/editproduct.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/NavBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

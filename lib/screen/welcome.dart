@@ -11,7 +11,7 @@ import 'dart:async';
 import 'package:loginsystem/model/data.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginsystem/screen/editpro.dart';
+import 'package:loginsystem/screen/editproduct.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -74,7 +74,11 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                           }
                           ratingx = producrxDocs.length;
 
-                          rating = sumOfCreditMulSGPA / producrxDocs.length;
+                          if (producrxDocs.length == 0) {
+                            rating = 0.0;
+                          } else {
+                            rating = sumOfCreditMulSGPA / producrxDocs.length;
+                          }
 
                           return SingleChildScrollView(
                             child: Padding(
@@ -108,8 +112,8 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                             alignment: Alignment.center,
                                             child: Image.network(
                                               hot.data.docs[index]["url"],
-                                              height: 150,
-                                              width: 150,
+                                              height: 120,
+                                              width: 130,
                                             ),
                                           ),
                                         ),

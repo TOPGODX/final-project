@@ -10,7 +10,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:loginsystem/model/profile.dart';
 import 'package:loginsystem/screen/edit.dart';
 import 'package:loginsystem/screen/my_Style.dart';
-import 'package:loginsystem/screen/editpro.dart';
+import 'package:loginsystem/screen/editproduct.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/NavBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

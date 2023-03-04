@@ -66,7 +66,11 @@ class _ResultPage extends State<ResultPage> {
 
                   ratingx = snapshot.data.docs.length;
 
-                  rating = sumOfCreditMulSGPA / snapshot.data.docs.length;
+                  if (snapshot.data.docs.length == 0) {
+                    rating = 0.0;
+                  } else {
+                    rating = sumOfCreditMulSGPA / snapshot.data.docs.length;
+                  }
 
                   return Scaffold(
                     body: Padding(

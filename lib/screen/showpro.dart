@@ -29,7 +29,10 @@ class _ShowproState extends State<Showpro> {
           title: Card(
         child: TextField(
           decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search), hintText: "ค้นหาสินค้า"),
+              prefixIcon: Icon(Icons.search),
+              hintText: "ค้นหาสินค้า",
+              hintStyle:
+                  TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
           onChanged: (val) {
             setState(() {
               namex = val;

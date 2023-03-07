@@ -29,13 +29,21 @@ android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
-  compileOptions {
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-      kotlinOptions {
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "Instantiatable"
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    kotlinOptions {
         jvmTarget = '1.8'
     }
+    
+    
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'

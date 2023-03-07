@@ -4,7 +4,17 @@
             "outputFile": "E:\\work\\MARKET\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-2\\files-2.1\\f95b1131548c945f703368c3f29cea63\\core-1.8.0\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-3\\cf3bb834e669c6c36c551d1c7d6c69f0\\transformed\\browser-1.4.0\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,153,250,359",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "148,245,354,453"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-3\\94b8adf524172e84ea5c143df8c53f72\\transformed\\core-1.8.0\\res\\values-en-rAU\\values-en-rAU.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "458",
                         "endColumns": "100",
                         "endOffsets": "554"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\TOP\\.gradle\\caches\\transforms-2\\files-2.1\\ad0b477de896a1f3831caa4bcb80eef0\\browser-1.4.0\\res\\values-en-rAU\\values-en-rAU.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,153,250,359",
-                        "endColumns": "97,96,108,98",
-                        "endOffsets": "148,245,354,453"
                     }
                 }
             ]

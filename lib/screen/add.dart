@@ -8,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:loginsystem/screen/edit.dart';
 import 'package:loginsystem/screen/my_Style.dart';
 import 'package:loginsystem/screen/welcome.dart';
 import 'package:loginsystem/screen/NavBar.dart';
@@ -160,7 +161,7 @@ class _addscreen extends State<addscreen> {
         .then((value) {
       print('object');
       MaterialPageRoute route = MaterialPageRoute(
-        builder: (value) => WelcomeScreen(),
+        builder: (value) => EditScreen(),
       );
       Navigator.of(context).pushAndRemoveUntil(route, (value) => false);
     });
@@ -279,6 +280,7 @@ class _addscreen extends State<addscreen> {
           width: MediaQuery.of(context).size.width,
           child: ElevatedButton.icon(
             onPressed: () {
+              MyStyle().showProgress();
               if (file == null) {
                 final snackBar = SnackBar(
                   /// need to set following properties for best effect of awesome_snackbar_content

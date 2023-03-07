@@ -56,12 +56,19 @@ class _ResultPage extends State<ResultPage> {
                   double king = 0.0;
                   double rating = 0.0;
                   int ratingx = 0;
+                  int mailx = 0;
+                  String mail;
 
-                  print(snapshot.data.docs.length);
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
                     double creditMulSGPA =
                         king + snapshot.data.docs[i]['rating'].toDouble();
                     sumOfCreditMulSGPA += creditMulSGPA;
+                  }
+                  for (int i = 0; i < snapshot.data.docs.length; i++) {
+                    if (snapshot.data.docs[i]['email'] != null) {
+                      if (auth.currentUser?.email ==
+                          snapshot.data.docs[i]['email']) mailx++;
+                    }
                   }
 
                   ratingx = snapshot.data.docs.length;
@@ -237,7 +244,7 @@ class _ResultPage extends State<ResultPage> {
                                                         direction:
                                                             Axis.horizontal,
                                                         itemCount: 5,
-                                                        ignoreGestures: false,
+                                                        ignoreGestures: true,
                                                         itemSize: 15,
                                                         allowHalfRating:
                                                             true, //ครึ่งดาว
@@ -263,7 +270,7 @@ class _ResultPage extends State<ResultPage> {
                                                                 Axis.horizontal,
                                                             itemCount: 1,
                                                             ignoreGestures:
-                                                                false,
+                                                                true,
                                                             itemSize: 15,
                                                             allowHalfRating:
                                                                 true, //ครึ่งดาว
@@ -280,71 +287,62 @@ class _ResultPage extends State<ResultPage> {
                                                             ),
                                                             onRatingUpdate:
                                                                 (you) {
-                                                              if (auth.currentUser
-                                                                      ?.email !=
-                                                                  snapshot.data
-                                                                              .docs[
-                                                                          index]
-                                                                      [
-                                                                      'email']) {
-                                                                showDialog<
-                                                                    void>(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (BuildContext
-                                                                          context) {
-                                                                    return AlertDialog(
-                                                                      title:
-                                                                          const Text(
-                                                                        'คะแนนรีวิว',
-                                                                        style: TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold),
-                                                                      ),
-                                                                      actions: <
-                                                                          Widget>[
-                                                                        Center(
-                                                                          child:
-                                                                              RatingBar.builder(
-                                                                            initialRating:
-                                                                                rating, //ดาวที่ได้
-                                                                            minRating:
-                                                                                1,
-                                                                            direction:
-                                                                                Axis.horizontal,
-                                                                            itemCount:
-                                                                                5,
-                                                                            ignoreGestures:
-                                                                                false,
-                                                                            itemSize:
-                                                                                30, //ครึ่งดาว
-                                                                            itemPadding:
-                                                                                EdgeInsets.symmetric(horizontal: 2),
-                                                                            itemBuilder: (context, _) =>
-                                                                                Icon(
-                                                                              Icons.star,
-                                                                              color: Colors.orange,
-                                                                            ),
-                                                                            onRatingUpdate:
-                                                                                (kub) {
-                                                                              subCollectionRef.add({
-                                                                                'email': auth.currentUser?.email,
-                                                                                'rating': kub,
-                                                                              });
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                          ),
+                                                              if (mailx == 0) {
+                                                                if (auth.currentUser
+                                                                        ?.email !=
+                                                                    snapshot.data
+                                                                            .docs[index]
+                                                                        [
+                                                                        'email']) {
+                                                                  showDialog<
+                                                                      void>(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        title:
+                                                                            const Text(
+                                                                          'คะแนนรีวิว',
+                                                                          style:
+                                                                              TextStyle(fontWeight: FontWeight.bold),
                                                                         ),
-                                                                        Row(
-                                                                          children: [
-                                                                            Container(height: 20)
-                                                                          ],
-                                                                        )
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
+                                                                        actions: <
+                                                                            Widget>[
+                                                                          Center(
+                                                                            child:
+                                                                                RatingBar.builder(
+                                                                              initialRating: rating, //ดาวที่ได้
+                                                                              minRating: 1,
+                                                                              direction: Axis.horizontal,
+                                                                              itemCount: 5,
+                                                                              ignoreGestures: false,
+                                                                              itemSize: 30, //ครึ่งดาว
+                                                                              itemPadding: EdgeInsets.symmetric(horizontal: 2),
+                                                                              itemBuilder: (context, _) => Icon(
+                                                                                Icons.star,
+                                                                                color: Colors.orange,
+                                                                              ),
+                                                                              onRatingUpdate: (kub) {
+                                                                                subCollectionRef.add({
+                                                                                  'email': auth.currentUser?.email,
+                                                                                  'rating': kub,
+                                                                                });
+                                                                                Navigator.of(context).pop();
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Container(height: 20)
+                                                                            ],
+                                                                          )
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                }
                                                               }
                                                             },
                                                           ),

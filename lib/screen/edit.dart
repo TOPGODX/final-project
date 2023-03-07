@@ -130,7 +130,7 @@ class _EditScreen extends State<EditScreen> {
                                                         leading:
                                                             Icon(Icons.add),
                                                         iconColor: Colors.green,
-                                                        title: Text('Add'),
+                                                        title: Text('Product'),
                                                       ),
                                                     ),
                                                     PopupMenuItem(

@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:loginsystem/model/profile.dart';
 import 'package:loginsystem/screen/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -18,6 +20,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _username = "";
   String _email = "";
   String _password = "";
+  String rool;
+  String email = "";
+  String selectedItem;
+  List<String> Listx = ['User', 'Seller'];
+  String validateDropdownValue(String value) {
+    if (value == null) {
+      return 'กรุณาเลือกผู้ใช้';
+    }
+    return null;
+  }
+
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
 
   @override
@@ -153,49 +166,100 @@ class _RegisterScreenState extends State<RegisterScreen> {
           },
         ),
         SizedBox(
+          height: 10,
+        ),
+        Text("User", style: TextStyle(fontSize: 15)),
+        DropdownButton<String>(
+          isExpanded: true,
+          style: TextStyle(
+              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+          hint: new Text(
+            "  ข้อมูลผู้ใช้",
+            style: TextStyle(
+                color: Color.fromARGB(255, 2, 0, 0),
+                fontWeight: FontWeight.normal,
+                fontSize: 15),
+          ),
+          value: rool,
+          items: Listx.map((gender) {
+            return DropdownMenuItem<String>(
+              value: gender,
+              child: Text(gender),
+            );
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              rool = value;
+              print(rool);
+            });
+          },
+        ),
+        SizedBox(
           height: 35,
         ),
-        ElevatedButton(
-          child: Text(
-            "                               Sign Up                               ",
-            style: TextStyle(fontSize: 20),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(vertical: 16),
-          ),
-          onPressed: () async {
-            if (formKey.currentState?.validate() ?? false) {
-              formKey.currentState?.save();
-              try {
-                await FirebaseAuth.instance
-                    .createUserWithEmailAndPassword(
-                        email: _email, password: _password)
-                    .then((value) {
-                  formKey.currentState?.reset();
-                  Fluttertoast.showToast(
-                      msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว",
-                      gravity: ToastGravity.TOP);
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) {
-                    return LoginScreen();
-                  }));
-                });
-              } on FirebaseAuthException catch (e) {
-                print(e.code);
-                String message;
-                if (e.code == 'email-already-in-use') {
-                  message = "มีอีเมลนี้ในระบบแล้วครับ โปรดใช้อีเมลอื่นแทน";
-                } else if (e.code == 'weak-password') {
-                  message = "รหัสผ่านต้องมีความยาว 6 ตัวอักษรขึ้นไป";
+        Center(
+          child: ElevatedButton(
+              child: Text(
+                "                               Sign Up                               ",
+                style: TextStyle(fontSize: 20),
+              ),
+              style: ElevatedButton.styleFrom(
+                shape: StadiumBorder(),
+                padding: EdgeInsets.symmetric(vertical: 16),
+              ),
+              onPressed: () async {
+                if (rool == null) {
+                  final snackBar = SnackBar(
+                    /// need to set following properties for best effect of awesome_snackbar_content
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    content: AwesomeSnackbarContent(
+                      title: '!! แจ้งเตือน !!',
+                      message: 'กรุณากรอบข้อมูลให้ครบ !!',
+
+                      /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+                      contentType: ContentType.failure,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(snackBar);
                 } else {
-                  message = e.message ?? "";
+                  if (formKey.currentState?.validate() ?? false) {
+                    formKey.currentState?.save();
+                    try {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                              email: _email, password: _password)
+                          .then((value) => {
+                                postDetailsToFirestore(_username, rool),
+                                formKey.currentState?.reset(),
+                                Fluttertoast.showToast(
+                                    msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว",
+                                    gravity: ToastGravity.TOP),
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return LoginScreen();
+                                })),
+                              });
+                    } on FirebaseAuthException catch (e) {
+                      print(e.code);
+                      String message;
+                      if (e.code == 'email-already-in-use') {
+                        message =
+                            "มีอีเมลนี้ในระบบแล้วครับ โปรดใช้อีเมลอื่นแทน";
+                      } else if (e.code == 'weak-password') {
+                        message = "รหัสผ่านต้องมีความยาว 6 ตัวอักษรขึ้นไป";
+                      } else {
+                        message = e.message ?? "";
+                      }
+                      Fluttertoast.showToast(
+                          msg: message, gravity: ToastGravity.CENTER);
+                    }
+                  }
                 }
-                Fluttertoast.showToast(
-                    msg: message, gravity: ToastGravity.CENTER);
-              }
-            }
-          },
+              }),
         ),
       ],
     );
@@ -216,5 +280,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Text("Login"))
       ],
     );
+  }
+
+  postDetailsToFirestore(String email, String rool) async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+    CollectionReference ref = FirebaseFirestore.instance.collection('users');
+    ref.doc(_email).set({'user': _username, 'rool': rool});
   }
 }

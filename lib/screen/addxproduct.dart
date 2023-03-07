@@ -36,7 +36,6 @@ class _Addproscreen extends State<Addproscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavBar(),
         appBar: AppBar(
           title: Text(
             "เพิ่มรูปสินค้า",
@@ -79,7 +78,7 @@ class _Addproscreen extends State<Addproscreen> {
                   height: 200,
                   child: file == null
                       ? Image.network(
-                          "https://cdn.discordapp.com/attachments/846300874976133161/1076429263412142100/396915-200.png",
+                          "https://cdn.discordapp.com/attachments/819007560120008726/1081392053797273600/2329865.png",
                           height: 300,
                           width: 300,
                         )

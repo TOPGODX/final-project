@@ -1,15 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart'
-    show
-        Brightness,
-        BuildContext,
-        Colors,
-        MaterialApp,
-        StatelessWidget,
-        ThemeData,
-        Widget,
-        runApp;
+import 'package:flutter/material.dart';
+
 import 'package:loginsystem/screen/login.dart';
 import 'package:loginsystem/screen/register.dart';
 import 'package:loginsystem/screen/add.dart';
@@ -23,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Market',
         theme: ThemeData(
             primarySwatch: Colors.lightGreen, brightness: Brightness.light),
         home: LoginScreen());

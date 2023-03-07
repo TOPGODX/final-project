@@ -210,24 +210,40 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              IconButton(
-                                                icon: const Icon(Icons.search),
-                                                color: Colors.grey,
-                                                onPressed: () {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          ResultPage(
-                                                              hot
-                                                                  .data
-                                                                  .docs[index]
-                                                                  .id,
-                                                              index),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: 20,
+                                                  ),
+                                                  IconButton(
+                                                    icon: Image.network(
+                                                      "https://cdn.discordapp.com/attachments/819007560120008726/1081679877670961243/254032.png",
+                                                      height: 50,
+                                                      width: 50,
                                                     ),
-                                                  );
-                                                },
-                                              ),
+                                                    color: Colors.grey,
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .push(
+                                                        MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              ResultPage(
+                                                                  hot
+                                                                      .data
+                                                                      .docs[
+                                                                          index]
+                                                                      .id,
+                                                                  index),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              )
                                             ],
                                           ),
                                         )

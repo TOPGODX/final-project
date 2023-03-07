@@ -128,34 +128,36 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         SizedBox(height: 10),
-        ElevatedButton(
-          onPressed: () async {
-            if (formKey.currentState?.validate() ?? false) {
-              formKey.currentState?.save();
-              try {
-                await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(
-                        email: _email, password: _password)
-                    .then((value) {
-                  formKey.currentState?.reset();
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) {
-                    return WelcomeScreen();
-                  }));
-                });
-              } on FirebaseAuthException catch (e) {
-                Fluttertoast.showToast(
-                    msg: e.message ?? "", gravity: ToastGravity.CENTER);
+        Center(
+          child: ElevatedButton(
+            onPressed: () async {
+              if (formKey.currentState?.validate() ?? false) {
+                formKey.currentState?.save();
+                try {
+                  await FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _email, password: _password)
+                      .then((value) {
+                    formKey.currentState?.reset();
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return WelcomeScreen();
+                    }));
+                  });
+                } on FirebaseAuthException catch (e) {
+                  Fluttertoast.showToast(
+                      msg: e.message ?? "", gravity: ToastGravity.CENTER);
+                }
               }
-            }
-          },
-          child: Text(
-            "                               Login                               ",
-            style: TextStyle(fontSize: 20),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(vertical: 16),
+            },
+            child: Text(
+              "                               Login                               ",
+              style: TextStyle(fontSize: 20),
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: StadiumBorder(),
+              padding: EdgeInsets.symmetric(vertical: 16),
+            ),
           ),
         ),
       ],

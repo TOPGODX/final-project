@@ -97,7 +97,7 @@ class _Showshop extends State<Showshop> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 60,
+                                        width: 40,
                                       ),
                                       Container(
                                         width: 140,

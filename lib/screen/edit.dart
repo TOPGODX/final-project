@@ -28,7 +28,14 @@ class _EditScreen extends State<EditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavBar(),
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          "แก้ไข้สินค้า",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(
@@ -49,15 +56,15 @@ class _EditScreen extends State<EditScreen> {
                         return SingleChildScrollView(
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
+                                vertical: 0, horizontal: 0),
                             child: Column(children: [
                               if (auth.currentUser?.email ==
                                   snapshot.data.docs[index]['email'])
                                 Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 5),
+                                  padding: EdgeInsets.symmetric(vertical: 10),
                                   child: Container(
                                     width: 380,
-                                    height: 150,
+                                    height: 130,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(10),
@@ -70,9 +77,11 @@ class _EditScreen extends State<EditScreen> {
                                           )
                                         ]),
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
-                                          width: 15,
+                                          width: 5,
                                         ),
                                         InkWell(
                                           onTap: () {},
@@ -80,19 +89,17 @@ class _EditScreen extends State<EditScreen> {
                                             alignment: Alignment.center,
                                             child: Image.network(
                                               snapshot.data.docs[index]['url'],
-                                              height: 150,
-                                              width: 150,
+                                              height: 120,
+                                              width: 100,
                                             ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 15,
+                                          width: 5,
                                         ),
                                         Container(
                                           width: 140,
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
                                             children: [
@@ -113,110 +120,128 @@ class _EditScreen extends State<EditScreen> {
                                                     fontWeight:
                                                         FontWeight.normal),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(vertical: 5),
-                                          child: Column(
-                                            children: [
-                                              PopupMenuButton(
-                                                itemBuilder: (context) {
-                                                  return [
-                                                    PopupMenuItem(
-                                                      value: 'add',
-                                                      child: ListTile(
-                                                        leading:
-                                                            Icon(Icons.add),
-                                                        iconColor: Colors.green,
-                                                        title: Text('Product'),
-                                                      ),
+                                              Row(
+                                                children: [
+                                                  Image.network(
+                                                    "https://cdn.discordapp.com/attachments/846300874976133161/1076955671842541619/ezuelEWRrrIsW6VFUU7Gt91bR60AH6B8LHdB9n2M8DAAAAAElFTkSuQmCC.png",
+                                                    height: 18,
+                                                    width: 18,
+                                                  ),
+                                                  Text(
+                                                    "  เวลาเปิด " +
+                                                        snapshot.data
+                                                                .docs[index]
+                                                            ['time'] +
+                                                        " น",
+                                                    style: GoogleFonts.pridi(
+                                                      fontSize: 11,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                     ),
-                                                    PopupMenuItem(
-                                                      value: 'edit',
-                                                      child: ListTile(
-                                                        leading:
-                                                            Icon(Icons.edit),
-                                                        iconColor: Colors.blue,
-                                                        title: Text('Edit'),
-                                                      ),
-                                                    ),
-                                                    PopupMenuItem(
-                                                      value: 'delete',
-                                                      child: ListTile(
-                                                        leading:
-                                                            Icon(Icons.delete),
-                                                        iconColor: Colors.red,
-                                                        title: Text('Delete'),
-                                                      ),
-                                                    )
-                                                  ];
-                                                },
-                                                onSelected: (String value) {
-                                                  if (value == 'add') {
-                                                    Navigator.of(context)
-                                                        .push(MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          Editpro(
-                                                              snapshot
-                                                                  .data
-                                                                  .docs[index]
-                                                                  .id,
-                                                              index),
-                                                    ));
-                                                  }
-                                                  if (value == 'edit') {
-                                                    Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            Edit(index),
-                                                      ),
-                                                    );
-                                                  }
-                                                  if (value == 'delete') {
-                                                    showDialog<String>(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          AlertDialog(
-                                                        title: const Text(
-                                                            'แจ้งเตือน'),
-                                                        content: const Text(
-                                                            'ต้องจะลบหรือไม่'),
-                                                        actions: <Widget>[
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    context,
-                                                                    'Cancel'),
-                                                            child: const Text(
-                                                                'ยกเลิก'),
-                                                          ),
-                                                          TextButton(
-                                                            child: const Text(
-                                                                'ตกลง'),
-                                                            onPressed: () => {
-                                                              delete(snapshot
-                                                                  .data
-                                                                  .docs[index]
-                                                                  .id),
-                                                              Navigator.pop(
-                                                                  context,
-                                                                  'ตกลง'),
-                                                            },
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  }
-                                                },
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
-                                        )
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 0,
+                                            ),
+                                            PopupMenuButton(
+                                              itemBuilder: (context) {
+                                                return [
+                                                  PopupMenuItem(
+                                                    value: 'add',
+                                                    child: ListTile(
+                                                      leading: Icon(Icons.add),
+                                                      iconColor: Colors.green,
+                                                      title: Text('Product'),
+                                                    ),
+                                                  ),
+                                                  PopupMenuItem(
+                                                    value: 'edit',
+                                                    child: ListTile(
+                                                      leading: Icon(Icons.edit),
+                                                      iconColor: Colors.blue,
+                                                      title: Text('Edit'),
+                                                    ),
+                                                  ),
+                                                  PopupMenuItem(
+                                                    value: 'delete',
+                                                    child: ListTile(
+                                                      leading:
+                                                          Icon(Icons.delete),
+                                                      iconColor: Colors.red,
+                                                      title: Text('Delete'),
+                                                    ),
+                                                  )
+                                                ];
+                                              },
+                                              onSelected: (String value) {
+                                                if (value == 'add') {
+                                                  Navigator.of(context)
+                                                      .push(MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        Editpro(
+                                                            snapshot.data
+                                                                .docs[index].id,
+                                                            index),
+                                                  ));
+                                                }
+                                                if (value == 'edit') {
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          Edit(index),
+                                                    ),
+                                                  );
+                                                }
+                                                if (value == 'delete') {
+                                                  showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        AlertDialog(
+                                                      title: const Text(
+                                                          'แจ้งเตือน'),
+                                                      content: const Text(
+                                                          'ต้องจะลบหรือไม่'),
+                                                      actions: <Widget>[
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context,
+                                                                  'Cancel'),
+                                                          child: const Text(
+                                                              'ยกเลิก'),
+                                                        ),
+                                                        TextButton(
+                                                          child: const Text(
+                                                              'ตกลง'),
+                                                          onPressed: () => {
+                                                            delete(snapshot
+                                                                .data
+                                                                .docs[index]
+                                                                .id),
+                                                            Navigator.pop(
+                                                                context,
+                                                                'ตกลง'),
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),

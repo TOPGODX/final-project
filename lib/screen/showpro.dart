@@ -85,7 +85,7 @@ class _ShowproState extends State<Showpro> {
                                       return SingleChildScrollView(
                                         child: Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 10, horizontal: 10),
+                                              vertical: 5, horizontal: 5),
                                           child: Column(children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -108,66 +108,72 @@ class _ShowproState extends State<Showpro> {
                                                       )
                                                     ]),
                                                 child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
                                                   children: [
                                                     SizedBox(
-                                                      width: 15,
+                                                      width: 5,
                                                     ),
                                                     InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        Navigator.of(context)
+                                                            .push(
+                                                          MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                ResultPage(
+                                                                    hot
+                                                                        .data
+                                                                        .docs[
+                                                                            love]
+                                                                        .id,
+                                                                    love),
+                                                          ),
+                                                        );
+                                                      },
                                                       child: Container(
                                                         alignment:
                                                             Alignment.center,
                                                         child: Image.network(
                                                           producrxDocs[index]
                                                               .get("url"),
-                                                          height: 90,
-                                                          width: 90,
+                                                          height: 80,
+                                                          width: 80,
                                                         ),
                                                       ),
                                                     ),
                                                     SizedBox(
-                                                      width: 60,
+                                                      width: 5,
                                                     ),
                                                     Container(
                                                       width: 140,
                                                       child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceAround,
                                                         children: [
-                                                          Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceAround,
-                                                            children: [
-                                                              Text(
-                                                                producrxDocs[
-                                                                        index]
-                                                                    .get(
-                                                                        "name"),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style:
-                                                                    GoogleFonts
-                                                                        .pridi(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                              ),
-                                                            ],
+                                                          Text(
+                                                            producrxDocs[index]
+                                                                .get("name"),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: GoogleFonts
+                                                                .pridi(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
                                                           ),
                                                           Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Image.network(
                                                                 "https://cdn.discordapp.com/attachments/819007560120008726/1081390847318302831/green-dollar-png-download-image.png",
@@ -188,7 +194,7 @@ class _ShowproState extends State<Showpro> {
                                                                         .pridi(
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 20,
+                                                                  fontSize: 17,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -197,7 +203,13 @@ class _ShowproState extends State<Showpro> {
                                                             ],
                                                           ),
                                                           Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
+                                                              Container(
+                                                                width: 0,
+                                                              ),
                                                               Image.network(
                                                                 "https://cdn.discordapp.com/attachments/819007560120008726/1081391769943539834/e15b3a4d40aca7334d7d7cf33a680000.png",
                                                                 height: 30,
@@ -218,7 +230,7 @@ class _ShowproState extends State<Showpro> {
                                                                         .pridi(
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 20,
+                                                                  fontSize: 17,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -229,38 +241,36 @@ class _ShowproState extends State<Showpro> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 1),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          IconButton(
-                                                            icon: const Icon(
-                                                                Icons.search),
-                                                            color: Colors.grey,
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .push(
-                                                                MaterialPageRoute(
-                                                                  builder: (BuildContext
-                                                                          context) =>
-                                                                      ResultPage(
-                                                                          hot
-                                                                              .data
-                                                                              .docs[love]
-                                                                              .id,
-                                                                          love),
-                                                                ),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ],
-                                                      ),
+                                                    Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Container(
+                                                          width: 0,
+                                                        ),
+                                                        IconButton(
+                                                          icon: const Icon(
+                                                              Icons.search),
+                                                          color: Colors.grey,
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                              MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    ResultPage(
+                                                                        hot
+                                                                            .data
+                                                                            .docs[love]
+                                                                            .id,
+                                                                        love),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ],
                                                     )
                                                   ],
                                                 ),
@@ -278,7 +288,7 @@ class _ShowproState extends State<Showpro> {
                                       return SingleChildScrollView(
                                         child: Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 10, horizontal: 10),
+                                              vertical: 5, horizontal: 5),
                                           child: Column(children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -301,66 +311,72 @@ class _ShowproState extends State<Showpro> {
                                                       )
                                                     ]),
                                                 child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
                                                   children: [
                                                     SizedBox(
-                                                      width: 15,
+                                                      width: 5,
                                                     ),
                                                     InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        Navigator.of(context)
+                                                            .push(
+                                                          MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                ResultPage(
+                                                                    hot
+                                                                        .data
+                                                                        .docs[
+                                                                            love]
+                                                                        .id,
+                                                                    love),
+                                                          ),
+                                                        );
+                                                      },
                                                       child: Container(
                                                         alignment:
                                                             Alignment.center,
                                                         child: Image.network(
                                                           producrxDocs[index]
                                                               .get("url"),
-                                                          height: 90,
-                                                          width: 90,
+                                                          height: 80,
+                                                          width: 80,
                                                         ),
                                                       ),
                                                     ),
                                                     SizedBox(
-                                                      width: 60,
+                                                      width: 5,
                                                     ),
                                                     Container(
                                                       width: 140,
                                                       child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceAround,
                                                         children: [
-                                                          Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceAround,
-                                                            children: [
-                                                              Text(
-                                                                producrxDocs[
-                                                                        index]
-                                                                    .get(
-                                                                        "name"),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style:
-                                                                    GoogleFonts
-                                                                        .pridi(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                              ),
-                                                            ],
+                                                          Text(
+                                                            producrxDocs[index]
+                                                                .get("name"),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: GoogleFonts
+                                                                .pridi(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
                                                           ),
                                                           Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Image.network(
                                                                 "https://cdn.discordapp.com/attachments/819007560120008726/1081390847318302831/green-dollar-png-download-image.png",
@@ -381,7 +397,7 @@ class _ShowproState extends State<Showpro> {
                                                                         .pridi(
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 20,
+                                                                  fontSize: 17,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -390,7 +406,13 @@ class _ShowproState extends State<Showpro> {
                                                             ],
                                                           ),
                                                           Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
+                                                              Container(
+                                                                width: 0,
+                                                              ),
                                                               Image.network(
                                                                 "https://cdn.discordapp.com/attachments/819007560120008726/1081391769943539834/e15b3a4d40aca7334d7d7cf33a680000.png",
                                                                 height: 30,
@@ -411,7 +433,7 @@ class _ShowproState extends State<Showpro> {
                                                                         .pridi(
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 20,
+                                                                  fontSize: 17,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -422,38 +444,36 @@ class _ShowproState extends State<Showpro> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 1),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          IconButton(
-                                                            icon: const Icon(
-                                                                Icons.search),
-                                                            color: Colors.grey,
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .push(
-                                                                MaterialPageRoute(
-                                                                  builder: (BuildContext
-                                                                          context) =>
-                                                                      ResultPage(
-                                                                          hot
-                                                                              .data
-                                                                              .docs[love]
-                                                                              .id,
-                                                                          love),
-                                                                ),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ],
-                                                      ),
+                                                    Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Container(
+                                                          width: 0,
+                                                        ),
+                                                        IconButton(
+                                                          icon: const Icon(
+                                                              Icons.search),
+                                                          color: Colors.grey,
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                              MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    ResultPage(
+                                                                        hot
+                                                                            .data
+                                                                            .docs[love]
+                                                                            .id,
+                                                                        love),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ],
                                                     )
                                                   ],
                                                 ),

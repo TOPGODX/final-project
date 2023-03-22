@@ -83,12 +83,12 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                           return SingleChildScrollView(
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                                  vertical: 5, horizontal: 0),
                               child: Column(children: [
                                 Padding(
                                   padding: EdgeInsets.symmetric(vertical: 5),
                                   child: Container(
-                                    width: 380,
+                                    width: 350,
                                     height: 150,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -96,35 +96,46 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 3,
+                                            spreadRadius: 2,
                                             blurRadius: 10,
                                             offset: Offset(0, 3),
                                           )
                                         ]),
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
-                                          width: 15,
+                                          width: 5,
                                         ),
                                         InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        ResultPage(
+                                                            hot.data.docs[index]
+                                                                .id,
+                                                            index),
+                                              ),
+                                            );
+                                          },
                                           child: Container(
                                             alignment: Alignment.center,
                                             child: Image.network(
                                               hot.data.docs[index]["url"],
-                                              height: 120,
-                                              width: 130,
+                                              height: 100,
+                                              width: 100,
                                             ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 15,
+                                          width: 5,
                                         ),
                                         Container(
-                                          width: 140,
+                                          width: 150,
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
                                             children: [
@@ -203,50 +214,37 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(vertical: 1),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Container(
-                                                    width: 20,
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 0,
+                                            ),
+                                            IconButton(
+                                              icon: Image.network(
+                                                "https://cdn.discordapp.com/attachments/819007560120008726/1081679877670961243/254032.png",
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                              color: Colors.grey,
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        ResultPage(
+                                                            hot.data.docs[index]
+                                                                .id,
+                                                            index),
                                                   ),
-                                                  IconButton(
-                                                    icon: Image.network(
-                                                      "https://cdn.discordapp.com/attachments/819007560120008726/1081679877670961243/254032.png",
-                                                      height: 50,
-                                                      width: 50,
-                                                    ),
-                                                    color: Colors.grey,
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .push(
-                                                        MaterialPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              ResultPage(
-                                                                  hot
-                                                                      .data
-                                                                      .docs[
-                                                                          index]
-                                                                      .id,
-                                                                  index),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        )
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),

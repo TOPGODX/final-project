@@ -36,7 +36,7 @@ dependencies:
   google_fonts: ^4.0.3
   image_picker: ^0.8.6+4
   cloud_firestore: ^4.4.2
-  firebase_storage: ^11.0.11
+  firebase_storage: ^11.0.16
   awesome_snackbar_content: ^0.1.0
   equatable: ^2.0.5
   flutter_rating_bar: ^4.0.1

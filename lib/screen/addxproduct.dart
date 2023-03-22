@@ -107,8 +107,9 @@ class _Addproscreen extends State<Addproscreen> {
     Random random = Random();
     int i = random.nextInt(10000);
     FirebaseStorage storage = FirebaseStorage.instance;
-    Reference ref =
-        storage.ref().child("shop/producr$i.jng" + DateTime.now().toString());
+    Reference ref = storage
+        .ref()
+        .child("Product/producr$i.jng" + DateTime.now().toString());
     UploadTask uploadTask = ref.putFile(file);
     urlpic = await (await uploadTask).ref.getDownloadURL();
     print('url = $urlpic');
@@ -147,7 +148,7 @@ class _Addproscreen extends State<Addproscreen> {
         TextFormField(
             onChanged: (value) => nameshop = value.trim(),
             decoration: InputDecoration(
-              labelText: "ชื่อร้านอาหาร", //babel text
+              labelText: "ชื่อสินค้า", //babel text
 
               prefixIcon:
                   Icon(Icons.store, color: Colors.green.shade400), //prefix iocn

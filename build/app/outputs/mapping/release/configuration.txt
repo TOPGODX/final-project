@@ -178,7 +178,7 @@
 }
 
 # End of content from C:\Users\TOP\.gradle\caches\transforms-3\c31407a62d2e2234ace75582bfc5c34f\transformed\jetified-firebase-auth-21.1.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\TOP\.gradle\caches\transforms-3\c01e49d0b2fcddf87beeac875f820971\transformed\jetified-firebase-firestore-24.4.2\proguard.txt
+# The proguard configuration file for the following section is C:\Users\TOP\.gradle\caches\transforms-3\ab373479e7278dc41ea3ed3fbb30df08\transformed\jetified-firebase-firestore-24.4.3\proguard.txt
 # Needed for DNS resolution.  Present in OpenJDK, but not Android
 -dontwarn javax.naming.**
 
@@ -198,7 +198,7 @@
 -dontwarn okio.**
 -dontwarn com.google.j2objc.annotations.**
 
-# End of content from C:\Users\TOP\.gradle\caches\transforms-3\c01e49d0b2fcddf87beeac875f820971\transformed\jetified-firebase-firestore-24.4.2\proguard.txt
+# End of content from C:\Users\TOP\.gradle\caches\transforms-3\ab373479e7278dc41ea3ed3fbb30df08\transformed\jetified-firebase-firestore-24.4.3\proguard.txt
 # The proguard configuration file for the following section is C:\Users\TOP\.gradle\caches\transforms-3\54f271b322f87d4d3712030faae5ada5\transformed\jetified-play-services-base-18.0.1\proguard.txt
 # b/35135904 Ensure that proguard will not strip the mResultGuardian.
 -keepclassmembers class com.google.android.gms.common.api.internal.BasePendingResult {

@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 3.1.66
 # min_api: 21
-# pg_map_id: c67a9d5
+# pg_map_id: d36fdfd
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"1.0"}
 a2.AsyncQueue$$ExternalSyntheticLambda0 -> a2.c:
@@ -16007,10 +16007,10 @@ com.google.firebase.firestore.local.MemoryPersistence -> v1.w0:
 com.google.firebase.firestore.local.MemoryRemoteDocumentCache -> v1.x0:
     com.google.firebase.database.collection.ImmutableSortedMap docs -> a
     com.google.firebase.firestore.local.IndexManager indexManager -> b
-    com.google.firebase.firestore.model.MutableDocument get(com.google.firebase.firestore.model.DocumentKey) -> a
-    void add(com.google.firebase.firestore.model.MutableDocument,com.google.firebase.firestore.model.SnapshotVersion) -> b
-    void setIndexManager(com.google.firebase.firestore.local.IndexManager) -> c
-    java.util.Map getAll(com.google.firebase.firestore.model.ResourcePath,com.google.firebase.firestore.model.FieldIndex$IndexOffset) -> d
+    java.util.Map getDocumentsMatchingQuery(com.google.firebase.firestore.core.Query,com.google.firebase.firestore.model.FieldIndex$IndexOffset,java.util.Set) -> a
+    com.google.firebase.firestore.model.MutableDocument get(com.google.firebase.firestore.model.DocumentKey) -> b
+    void add(com.google.firebase.firestore.model.MutableDocument,com.google.firebase.firestore.model.SnapshotVersion) -> c
+    void setIndexManager(com.google.firebase.firestore.local.IndexManager) -> d
     java.util.Map getAll(java.lang.String,com.google.firebase.firestore.model.FieldIndex$IndexOffset,int) -> e
     java.util.Map getAll(java.lang.Iterable) -> f
 com.google.firebase.firestore.local.MemoryTargetCache -> v1.y0:
@@ -16111,10 +16111,10 @@ com.google.firebase.firestore.local.ReferenceSet -> v1.h1:
     void removeReferences(com.google.firebase.database.collection.ImmutableSortedSet,int) -> g
     com.google.firebase.database.collection.ImmutableSortedSet removeReferencesForId(int) -> h
 com.google.firebase.firestore.local.RemoteDocumentCache -> v1.i1:
-    com.google.firebase.firestore.model.MutableDocument get(com.google.firebase.firestore.model.DocumentKey) -> a
-    void add(com.google.firebase.firestore.model.MutableDocument,com.google.firebase.firestore.model.SnapshotVersion) -> b
-    void setIndexManager(com.google.firebase.firestore.local.IndexManager) -> c
-    java.util.Map getAll(com.google.firebase.firestore.model.ResourcePath,com.google.firebase.firestore.model.FieldIndex$IndexOffset) -> d
+    java.util.Map getDocumentsMatchingQuery(com.google.firebase.firestore.core.Query,com.google.firebase.firestore.model.FieldIndex$IndexOffset,java.util.Set) -> a
+    com.google.firebase.firestore.model.MutableDocument get(com.google.firebase.firestore.model.DocumentKey) -> b
+    void add(com.google.firebase.firestore.model.MutableDocument,com.google.firebase.firestore.model.SnapshotVersion) -> c
+    void setIndexManager(com.google.firebase.firestore.local.IndexManager) -> d
     java.util.Map getAll(java.lang.String,com.google.firebase.firestore.model.FieldIndex$IndexOffset,int) -> e
     java.util.Map getAll(java.lang.Iterable) -> f
 com.google.firebase.firestore.local.SQLiteBundleCache -> v1.l1:
@@ -16418,29 +16418,32 @@ com.google.firebase.firestore.local.SQLitePersistence$Query -> v1.x2$d:
     boolean isEmpty() -> f
     android.database.Cursor lambda$binding$0(java.lang.Object[],android.database.sqlite.SQLiteDatabase,android.database.sqlite.SQLiteCursorDriver,java.lang.String,android.database.sqlite.SQLiteQuery) -> g
     android.database.Cursor startQuery() -> h
-com.google.firebase.firestore.local.SQLiteRemoteDocumentCache -> v1.c3:
+com.google.firebase.firestore.local.SQLiteRemoteDocumentCache -> v1.d3:
     com.google.firebase.firestore.local.SQLitePersistence db -> a
     com.google.firebase.firestore.local.LocalSerializer serializer -> b
     com.google.firebase.firestore.local.IndexManager indexManager -> c
-    com.google.firebase.firestore.model.MutableDocument get(com.google.firebase.firestore.model.DocumentKey) -> a
-    void add(com.google.firebase.firestore.model.MutableDocument,com.google.firebase.firestore.model.SnapshotVersion) -> b
-    void setIndexManager(com.google.firebase.firestore.local.IndexManager) -> c
-    java.util.Map getAll(com.google.firebase.firestore.model.ResourcePath,com.google.firebase.firestore.model.FieldIndex$IndexOffset) -> d
+    java.util.Map getDocumentsMatchingQuery(com.google.firebase.firestore.core.Query,com.google.firebase.firestore.model.FieldIndex$IndexOffset,java.util.Set) -> a
+    com.google.firebase.firestore.model.MutableDocument get(com.google.firebase.firestore.model.DocumentKey) -> b
+    void add(com.google.firebase.firestore.model.MutableDocument,com.google.firebase.firestore.model.SnapshotVersion) -> c
+    void setIndexManager(com.google.firebase.firestore.local.IndexManager) -> d
     java.util.Map getAll(java.lang.String,com.google.firebase.firestore.model.FieldIndex$IndexOffset,int) -> e
     java.util.Map getAll(java.lang.Iterable) -> f
-    void $r8$lambda$Jn5xw0tdf_GmhJx6w7T_i41JIv4(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> g
+    void $r8$lambda$VTzYJkF4VLjHkqqiKEKwbIVW7ug(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,byte[],int,int,com.google.firebase.firestore.util.Function,java.util.Map) -> g
       # {"id":"com.android.tools.r8.synthesized"}
-    void $r8$lambda$toaX0dOV0ZPNM98Tz8mDPM4ukZA(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> h
+    void $r8$lambda$aH88WEXw07Wvf_tgBbV9fg8LFCM(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,com.google.firebase.firestore.util.Function,android.database.Cursor) -> h
       # {"id":"com.android.tools.r8.synthesized"}
-    void $r8$lambda$xF2MVOj_nLQlWOxhB7fbrhz363Q(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,byte[],int,int,java.util.Map) -> i
+    java.lang.Boolean $r8$lambda$lJZVlP8A4ArwDsHEe1vtwrPLh0w(com.google.firebase.firestore.core.Query,java.util.Set,com.google.firebase.firestore.model.MutableDocument) -> i
       # {"id":"com.android.tools.r8.synthesized"}
-    com.google.firebase.firestore.model.MutableDocument decodeMaybeDocument(byte[],int,int) -> j
-    java.util.Map getAll(java.util.List,com.google.firebase.firestore.model.FieldIndex$IndexOffset,int) -> k
-    void lambda$getAll$0(com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> l
-    void lambda$getAll$1(com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> m
-    void lambda$processRowInBackground$2(byte[],int,int,java.util.Map) -> n
-    void processRowInBackground(com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> o
-com.google.firebase.firestore.local.SQLiteSchema -> v1.v3:
+    void $r8$lambda$toaX0dOV0ZPNM98Tz8mDPM4ukZA(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> j
+      # {"id":"com.android.tools.r8.synthesized"}
+    com.google.firebase.firestore.model.MutableDocument decodeMaybeDocument(byte[],int,int) -> k
+    java.util.Map getAll(java.util.List,com.google.firebase.firestore.model.FieldIndex$IndexOffset,int,com.google.firebase.firestore.util.Function) -> l
+    void lambda$getAll$0(com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor) -> m
+    void lambda$getAll$1(com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,com.google.firebase.firestore.util.Function,android.database.Cursor) -> n
+    java.lang.Boolean lambda$getDocumentsMatchingQuery$3(com.google.firebase.firestore.core.Query,java.util.Set,com.google.firebase.firestore.model.MutableDocument) -> o
+    void lambda$processRowInBackground$2(byte[],int,int,com.google.firebase.firestore.util.Function,java.util.Map) -> p
+    void processRowInBackground(com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,android.database.Cursor,com.google.firebase.firestore.util.Function) -> q
+com.google.firebase.firestore.local.SQLiteSchema -> v1.w3:
     android.database.sqlite.SQLiteDatabase db -> a
     com.google.firebase.firestore.local.LocalSerializer serializer -> b
     void createOverlays() -> A
@@ -16526,7 +16529,7 @@ com.google.firebase.firestore.local.SQLiteSchema -> v1.v3:
     void createBundleCache() -> x
     void createDataMigrationTable() -> y
     void createFieldIndex() -> z
-com.google.firebase.firestore.local.SQLiteTargetCache -> v1.b4:
+com.google.firebase.firestore.local.SQLiteTargetCache -> v1.c4:
     com.google.firebase.firestore.model.SnapshotVersion lastRemoteSnapshotVersion -> e
     long targetCount -> f
     com.google.firebase.firestore.local.SQLitePersistence db -> a
@@ -16568,15 +16571,15 @@ com.google.firebase.firestore.local.SQLiteTargetCache -> v1.b4:
     void lambda$start$0(android.database.Cursor) -> x
     int removeQueries(long,android.util.SparseArray) -> y
     void removeTarget(int) -> z
-com.google.firebase.firestore.local.SQLiteTargetCache$1 -> v1.b4$a:
-com.google.firebase.firestore.local.SQLiteTargetCache$DocumentKeysHolder -> v1.b4$b:
+com.google.firebase.firestore.local.SQLiteTargetCache$1 -> v1.c4$a:
+com.google.firebase.firestore.local.SQLiteTargetCache$DocumentKeysHolder -> v1.c4$b:
     com.google.firebase.database.collection.ImmutableSortedSet keys -> a
-com.google.firebase.firestore.local.SQLiteTargetCache$TargetDataHolder -> v1.b4$c:
+com.google.firebase.firestore.local.SQLiteTargetCache$TargetDataHolder -> v1.c4$c:
     com.google.firebase.firestore.local.TargetData targetData -> a
-com.google.firebase.firestore.local.Scheduler -> v1.c4:
+com.google.firebase.firestore.local.Scheduler -> v1.d4:
     void start() -> a
     void stop() -> b
-com.google.firebase.firestore.local.TargetCache -> v1.d4:
+com.google.firebase.firestore.local.TargetCache -> v1.e4:
     void addTargetData(com.google.firebase.firestore.local.TargetData) -> a
     com.google.firebase.database.collection.ImmutableSortedSet getMatchingKeysForTargetId(int) -> b
     com.google.firebase.firestore.local.TargetData getTargetData(com.google.firebase.firestore.core.Target) -> c
@@ -16587,7 +16590,7 @@ com.google.firebase.firestore.local.TargetCache -> v1.d4:
     void updateTargetData(com.google.firebase.firestore.local.TargetData) -> h
     void setLastRemoteSnapshotVersion(com.google.firebase.firestore.model.SnapshotVersion) -> i
     int getHighestTargetId() -> j
-com.google.firebase.firestore.local.TargetData -> v1.e4:
+com.google.firebase.firestore.local.TargetData -> v1.f4:
     com.google.firebase.firestore.model.SnapshotVersion snapshotVersion -> e
     com.google.firebase.firestore.local.QueryPurpose purpose -> d
     com.google.firebase.firestore.core.Target target -> a
@@ -36612,16 +36615,6 @@ v1.SQLitePersistence$Query$$ExternalSyntheticLambda0 -> v1.y2:
 v1.SQLiteRemoteDocumentCache$$ExternalSyntheticLambda0 -> v1.z2:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
-    java.util.Map com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$a4e405c1878ac358cec962def3b80a2a0f622bb84af007e5cd79d640069e438a$0.f$2 -> c
-    com.google.firebase.firestore.util.BackgroundQueue com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$a4e405c1878ac358cec962def3b80a2a0f622bb84af007e5cd79d640069e438a$0.f$1 -> b
-    com.google.firebase.firestore.local.SQLiteRemoteDocumentCache com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$a4e405c1878ac358cec962def3b80a2a0f622bb84af007e5cd79d640069e438a$0.f$0 -> a
-    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$a4e405c1878ac358cec962def3b80a2a0f622bb84af007e5cd79d640069e438a$0.<init>(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,com.google.firebase.firestore.util.BackgroundQueue,java.util.Map) -> <init>
-      # {"id":"com.android.tools.r8.synthesized"}
-    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$a4e405c1878ac358cec962def3b80a2a0f622bb84af007e5cd79d640069e438a$0.accept(java.lang.Object) -> accept
-      # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteRemoteDocumentCache$$ExternalSyntheticLambda1 -> v1.a3:
-# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
-# {"id":"com.android.tools.r8.synthesized"}
     java.util.Map com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$62dbe80098cb95ab892c7cc8e21af1cd96db2a3eee08f1eb6d28495b394d4cf3$0.f$2 -> c
     com.google.firebase.firestore.util.BackgroundQueue com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$62dbe80098cb95ab892c7cc8e21af1cd96db2a3eee08f1eb6d28495b394d4cf3$0.f$1 -> b
     com.google.firebase.firestore.local.SQLiteRemoteDocumentCache com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$62dbe80098cb95ab892c7cc8e21af1cd96db2a3eee08f1eb6d28495b394d4cf3$0.f$0 -> a
@@ -36629,19 +36622,40 @@ v1.SQLiteRemoteDocumentCache$$ExternalSyntheticLambda1 -> v1.a3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$62dbe80098cb95ab892c7cc8e21af1cd96db2a3eee08f1eb6d28495b394d4cf3$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
+v1.SQLiteRemoteDocumentCache$$ExternalSyntheticLambda1 -> v1.a3:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    java.util.Map com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$d327dcae64f542dc6a44e19d020562858e15ee6cf03e0bfc0ef7f95cbd26cd19$0.f$2 -> c
+    com.google.firebase.firestore.util.Function com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$d327dcae64f542dc6a44e19d020562858e15ee6cf03e0bfc0ef7f95cbd26cd19$0.f$3 -> d
+    com.google.firebase.firestore.util.BackgroundQueue com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$d327dcae64f542dc6a44e19d020562858e15ee6cf03e0bfc0ef7f95cbd26cd19$0.f$1 -> b
+    com.google.firebase.firestore.local.SQLiteRemoteDocumentCache com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$d327dcae64f542dc6a44e19d020562858e15ee6cf03e0bfc0ef7f95cbd26cd19$0.f$0 -> a
+    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$d327dcae64f542dc6a44e19d020562858e15ee6cf03e0bfc0ef7f95cbd26cd19$0.<init>(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,com.google.firebase.firestore.util.BackgroundQueue,java.util.Map,com.google.firebase.firestore.util.Function) -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$d327dcae64f542dc6a44e19d020562858e15ee6cf03e0bfc0ef7f95cbd26cd19$0.accept(java.lang.Object) -> accept
+      # {"id":"com.android.tools.r8.synthesized"}
 v1.SQLiteRemoteDocumentCache$$ExternalSyntheticLambda2 -> v1.b3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
-    int com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.f$3 -> h
-    java.util.Map com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.f$4 -> i
-    int com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.f$2 -> g
-    com.google.firebase.firestore.local.SQLiteRemoteDocumentCache com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.f$0 -> e
-    byte[] com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.f$1 -> f
-    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.<init>(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,byte[],int,int,java.util.Map) -> <init>
+    java.util.Set com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$cf60e6ad918476eb4a4ac1393ce34eeddc56919848982c75448e1b5eec6325f0$0.f$1 -> b
+    com.google.firebase.firestore.core.Query com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$cf60e6ad918476eb4a4ac1393ce34eeddc56919848982c75448e1b5eec6325f0$0.f$0 -> a
+    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$cf60e6ad918476eb4a4ac1393ce34eeddc56919848982c75448e1b5eec6325f0$0.<init>(com.google.firebase.firestore.core.Query,java.util.Set) -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$7495814795f22348b39a645a5cf141dc04d08404edbbfbffe2b0b87d26fd2755$0.run() -> run
+    java.lang.Object com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$2$cf60e6ad918476eb4a4ac1393ce34eeddc56919848982c75448e1b5eec6325f0$0.apply(java.lang.Object) -> c
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda0 -> v1.d3:
+v1.SQLiteRemoteDocumentCache$$ExternalSyntheticLambda3 -> v1.c3:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    com.google.firebase.firestore.util.Function com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.f$4 -> i
+    int com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.f$3 -> h
+    int com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.f$2 -> g
+    java.util.Map com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.f$5 -> j
+    com.google.firebase.firestore.local.SQLiteRemoteDocumentCache com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.f$0 -> e
+    byte[] com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.f$1 -> f
+    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.<init>(com.google.firebase.firestore.local.SQLiteRemoteDocumentCache,byte[],int,int,com.google.firebase.firestore.util.Function,java.util.Map) -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache$$InternalSyntheticLambda$3$79e53bbe99ec11dd026b2e9ff7a3eb8521c5d49badd014672819f2c3458d81cd$0.run() -> run
+      # {"id":"com.android.tools.r8.synthesized"}
+v1.SQLiteSchema$$ExternalSyntheticLambda0 -> v1.e3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.util.Consumer com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$2.f$0 -> a
@@ -36649,7 +36663,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda0 -> v1.d3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$2.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda1 -> v1.m3:
+v1.SQLiteSchema$$ExternalSyntheticLambda1 -> v1.n3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.util.Consumer com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$3.f$0 -> a
@@ -36657,7 +36671,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda1 -> v1.m3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$3.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda10 -> v1.e3:
+v1.SQLiteSchema$$ExternalSyntheticLambda10 -> v1.f3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$fec9abdd3eb360ac87955ceecc2d8ac2e7fcb0998639dc5f62de01b15cb25539$0.f$0 -> e
@@ -36665,7 +36679,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda10 -> v1.e3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$fec9abdd3eb360ac87955ceecc2d8ac2e7fcb0998639dc5f62de01b15cb25539$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda11 -> v1.f3:
+v1.SQLiteSchema$$ExternalSyntheticLambda11 -> v1.g3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$34742c18212aba428e0e5ff386910cefb9c3c55130d7985645cc9b6d1a468f55$0.f$0 -> e
@@ -36673,7 +36687,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda11 -> v1.f3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$34742c18212aba428e0e5ff386910cefb9c3c55130d7985645cc9b6d1a468f55$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda12 -> v1.g3:
+v1.SQLiteSchema$$ExternalSyntheticLambda12 -> v1.h3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$9b2e57524fc10389b325f367f32dc978c018c6f872b0458f31c2ad57c451cde9$0.f$0 -> e
@@ -36681,7 +36695,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda12 -> v1.g3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$9b2e57524fc10389b325f367f32dc978c018c6f872b0458f31c2ad57c451cde9$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda13 -> v1.h3:
+v1.SQLiteSchema$$ExternalSyntheticLambda13 -> v1.i3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$0.f$0 -> e
@@ -36689,7 +36703,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda13 -> v1.h3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda14 -> v1.i3:
+v1.SQLiteSchema$$ExternalSyntheticLambda14 -> v1.j3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$37b42d313d2e52f13b14de5eda4474dc0110866a87e489037164b9b1bad96e84$0.f$0 -> e
@@ -36697,7 +36711,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda14 -> v1.i3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$37b42d313d2e52f13b14de5eda4474dc0110866a87e489037164b9b1bad96e84$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda15 -> v1.j3:
+v1.SQLiteSchema$$ExternalSyntheticLambda15 -> v1.k3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$30ee3e60436d5e3e163f2c8f7c184a393c9f84b4ebd6b67542f7101f042da8b8$0.f$0 -> e
@@ -36705,7 +36719,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda15 -> v1.j3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$30ee3e60436d5e3e163f2c8f7c184a393c9f84b4ebd6b67542f7101f042da8b8$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda16 -> v1.k3:
+v1.SQLiteSchema$$ExternalSyntheticLambda16 -> v1.l3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$24277250049efff251f381be899eafdcc40a8c871647c095ff083c8109852ccd$0.f$0 -> e
@@ -36713,7 +36727,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda16 -> v1.k3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$24277250049efff251f381be899eafdcc40a8c871647c095ff083c8109852ccd$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda17 -> v1.l3:
+v1.SQLiteSchema$$ExternalSyntheticLambda17 -> v1.m3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$96ab82b3eb813639a8acb70a87afb22133784e70fe2b3d099b10efac56dc59d1$0.f$0 -> e
@@ -36721,7 +36735,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda17 -> v1.l3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$96ab82b3eb813639a8acb70a87afb22133784e70fe2b3d099b10efac56dc59d1$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda2 -> v1.n3:
+v1.SQLiteSchema$$ExternalSyntheticLambda2 -> v1.o3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.MemoryIndexManager$MemoryCollectionParentIndex com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$1.f$0 -> a
@@ -36730,7 +36744,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda2 -> v1.n3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$487b142f83782f829898b4daa42432b4e7356942a3d310f2f2d335f254e269f0$1.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda3 -> v1.o3:
+v1.SQLiteSchema$$ExternalSyntheticLambda3 -> v1.p3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3237ed3447f3c07adb527c1844f3cfcc906181f35738e10ad1c1e795da4c5ffe$0.f$0 -> a
@@ -36738,7 +36752,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda3 -> v1.o3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3237ed3447f3c07adb527c1844f3cfcc906181f35738e10ad1c1e795da4c5ffe$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda4 -> v1.p3:
+v1.SQLiteSchema$$ExternalSyntheticLambda4 -> v1.q3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$db439b463c2252f9b9844a3230b7cff2ea197746c08d1ecc159aed4c4436c387$0.f$0 -> a
@@ -36746,7 +36760,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda4 -> v1.p3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$db439b463c2252f9b9844a3230b7cff2ea197746c08d1ecc159aed4c4436c387$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda5 -> v1.q3:
+v1.SQLiteSchema$$ExternalSyntheticLambda5 -> v1.r3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$36d81a3bf72f83fe02c18c22f6fa4e6c99696dd835ae685573a467bb3e0f7c9f$0.f$0 -> a
@@ -36754,7 +36768,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda5 -> v1.q3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$36d81a3bf72f83fe02c18c22f6fa4e6c99696dd835ae685573a467bb3e0f7c9f$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda6 -> v1.r3:
+v1.SQLiteSchema$$ExternalSyntheticLambda6 -> v1.s3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$2$7aa72e3dc7364e11747d78441634e59928b07ef306098e3da6e1b056ba113729$0.f$0 -> a
@@ -36763,7 +36777,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda6 -> v1.r3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$2$7aa72e3dc7364e11747d78441634e59928b07ef306098e3da6e1b056ba113729$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda7 -> v1.s3:
+v1.SQLiteSchema$$ExternalSyntheticLambda7 -> v1.t3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     boolean[] com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$079df734baa7998ab64367d82a93f10b50bd3a635b47737a2d91a6bb9590e4d7$0.f$0 -> a
@@ -36772,7 +36786,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda7 -> v1.s3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$079df734baa7998ab64367d82a93f10b50bd3a635b47737a2d91a6bb9590e4d7$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda8 -> v1.t3:
+v1.SQLiteSchema$$ExternalSyntheticLambda8 -> v1.u3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     boolean[] com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3974c918bdf8a260527e04f15ecb0c8f11df24c7d766b11b3abe41d3ae7dceb9$1.f$0 -> a
@@ -36782,7 +36796,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda8 -> v1.t3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3974c918bdf8a260527e04f15ecb0c8f11df24c7d766b11b3abe41d3ae7dceb9$1.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteSchema$$ExternalSyntheticLambda9 -> v1.u3:
+v1.SQLiteSchema$$ExternalSyntheticLambda9 -> v1.v3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3974c918bdf8a260527e04f15ecb0c8f11df24c7d766b11b3abe41d3ae7dceb9$0 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3974c918bdf8a260527e04f15ecb0c8f11df24c7d766b11b3abe41d3ae7dceb9$0.INSTANCE -> a
@@ -36792,7 +36806,7 @@ v1.SQLiteSchema$$ExternalSyntheticLambda9 -> v1.u3:
       # {"id":"com.android.tools.r8.synthesized"}
     java.lang.Object com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$1$3974c918bdf8a260527e04f15ecb0c8f11df24c7d766b11b3abe41d3ae7dceb9$0.apply(java.lang.Object) -> c
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteTargetCache$$ExternalSyntheticLambda0 -> v1.w3:
+v1.SQLiteTargetCache$$ExternalSyntheticLambda0 -> v1.x3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteTargetCache$DocumentKeysHolder com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$2$fb01fe29b76dc5233ec900edc4729d2ca21450b43a8b35c7cf9c2bd6839a1563$0.f$0 -> a
@@ -36800,7 +36814,7 @@ v1.SQLiteTargetCache$$ExternalSyntheticLambda0 -> v1.w3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$2$fb01fe29b76dc5233ec900edc4729d2ca21450b43a8b35c7cf9c2bd6839a1563$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteTargetCache$$ExternalSyntheticLambda1 -> v1.x3:
+v1.SQLiteTargetCache$$ExternalSyntheticLambda1 -> v1.y3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteTargetCache com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$1$f8a65ccca4b106f89bd73f1352d14e597152a4f76bd713e00ff8480bd8b4e459$0.f$0 -> a
@@ -36808,7 +36822,7 @@ v1.SQLiteTargetCache$$ExternalSyntheticLambda1 -> v1.x3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$1$f8a65ccca4b106f89bd73f1352d14e597152a4f76bd713e00ff8480bd8b4e459$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteTargetCache$$ExternalSyntheticLambda2 -> v1.y3:
+v1.SQLiteTargetCache$$ExternalSyntheticLambda2 -> v1.z3:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteTargetCache com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$4$d180a66efeeb18fa579adea74f150f6d0b9b0932ae1fad93ba4bbf9f834beef2$0.f$0 -> a
@@ -36817,7 +36831,7 @@ v1.SQLiteTargetCache$$ExternalSyntheticLambda2 -> v1.y3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$4$d180a66efeeb18fa579adea74f150f6d0b9b0932ae1fad93ba4bbf9f834beef2$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteTargetCache$$ExternalSyntheticLambda3 -> v1.z3:
+v1.SQLiteTargetCache$$ExternalSyntheticLambda3 -> v1.a4:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteTargetCache com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$3$6004aa3c75ca0ed318d032b17c92ad8421955e8b14d35d323f42021c9de64e1e$0.f$0 -> a
@@ -36827,7 +36841,7 @@ v1.SQLiteTargetCache$$ExternalSyntheticLambda3 -> v1.z3:
       # {"id":"com.android.tools.r8.synthesized"}
     void com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$3$6004aa3c75ca0ed318d032b17c92ad8421955e8b14d35d323f42021c9de64e1e$0.accept(java.lang.Object) -> accept
       # {"id":"com.android.tools.r8.synthesized"}
-v1.SQLiteTargetCache$$ExternalSyntheticLambda4 -> v1.a4:
+v1.SQLiteTargetCache$$ExternalSyntheticLambda4 -> v1.b4:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     com.google.firebase.firestore.local.SQLiteTargetCache com.google.firebase.firestore.local.SQLiteTargetCache$$InternalSyntheticLambda$2$f7c5602c32cba5da87e12f3498b117bda304cec403ce6b5dccb95a0aa78505ac$0.f$0 -> a

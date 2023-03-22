@@ -62,7 +62,7 @@ class _Editpro extends State<Editpro> {
                         return SingleChildScrollView(
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
+                                vertical: 5, horizontal: 5),
                             child: Column(children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 5),
@@ -81,9 +81,11 @@ class _Editpro extends State<Editpro> {
                                         )
                                       ]),
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
-                                        width: 15,
+                                        width: 5,
                                       ),
                                       InkWell(
                                         onTap: () {},
@@ -97,7 +99,7 @@ class _Editpro extends State<Editpro> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 60,
+                                        width: 30,
                                       ),
                                       Container(
                                         width: 140,
@@ -141,61 +143,60 @@ class _Editpro extends State<Editpro> {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 1),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            IconButton(
-                                              icon: const Icon(Icons.delete),
-                                              color: Colors.red,
-                                              onPressed: () {
-                                                showDialog<String>(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          AlertDialog(
-                                                    title:
-                                                        const Text('แจ้งเตือน'),
-                                                    content: const Text(
-                                                        'ต้องจะลบหรือไม่'),
-                                                    actions: <Widget>[
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                context,
-                                                                'Cancel'),
-                                                        child: const Text(
-                                                            'ยกเลิก'),
-                                                      ),
-                                                      TextButton(
-                                                        child:
-                                                            const Text('ตกลง'),
-                                                        onPressed: () => {
-                                                          FirebaseFirestore
-                                                              .instance
-                                                              .collection(
-                                                                  'Producr')
-                                                              .doc(id)
-                                                              .collection(
-                                                                  'Producrx')
-                                                              .doc(snapshot.data
-                                                                  .docs[top].id)
-                                                              .delete(),
-                                                          Navigator.pop(
-                                                              context, 'ตกลง'),
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      )
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 0,
+                                          ),
+                                          IconButton(
+                                            icon: const Icon(Icons.delete),
+                                            color: Colors.red,
+                                            onPressed: () {
+                                              showDialog<String>(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                  title:
+                                                      const Text('แจ้งเตือน'),
+                                                  content: const Text(
+                                                      'ต้องจะลบหรือไม่'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(context,
+                                                              'Cancel'),
+                                                      child:
+                                                          const Text('ยกเลิก'),
+                                                    ),
+                                                    TextButton(
+                                                      child: const Text('ตกลง'),
+                                                      onPressed: () => {
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                'Producr')
+                                                            .doc(id)
+                                                            .collection(
+                                                                'Producrx')
+                                                            .doc(snapshot.data
+                                                                .docs[top].id)
+                                                            .delete(),
+                                                        Navigator.pop(
+                                                            context, 'ตกลง'),
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),

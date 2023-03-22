@@ -270,7 +270,7 @@ class _ResultPage extends State<ResultPage> {
                                                                 Axis.horizontal,
                                                             itemCount: 1,
                                                             ignoreGestures:
-                                                                true,
+                                                                false,
                                                             itemSize: 15,
                                                             allowHalfRating:
                                                                 true, //ครึ่งดาว
@@ -313,7 +313,7 @@ class _ResultPage extends State<ResultPage> {
                                                                           Center(
                                                                             child:
                                                                                 RatingBar.builder(
-                                                                              initialRating: rating, //ดาวที่ได้
+                                                                              initialRating: 0, //ดาวที่ได้
                                                                               minRating: 1,
                                                                               direction: Axis.horizontal,
                                                                               itemCount: 5,
